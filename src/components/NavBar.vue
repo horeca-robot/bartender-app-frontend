@@ -1,21 +1,17 @@
 <template>
-    <div>
-        <b-navbar toggleable="lg" type="dark" variant="info">
-            <b-navbar-brand href="#" class="ps-5">NavBar</b-navbar-brand>
-
-            <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-            <b-collapse id="nav-collapse" is-nav>
-                <b-navbar-nav>
-                        <b-nav-item>
-                            <router-link to="/">Home</router-link>
-                        </b-nav-item>
-                        <b-nav-item>
-                            <router-link to="/about">About</router-link>
-                        </b-nav-item>
-                </b-navbar-nav>
-            </b-collapse>
-        </b-navbar>
+    <div class="sidebar">
+        <div class="sidebarItem">
+            <router-link to="/">Home</router-link>
+        </div>
+        <div class="sidebarItem">
+            <router-link to="/about">About</router-link>
+        </div>
+        <div class="sidebarItem">
+            <router-link to="/orders">Orders</router-link>
+        </div>
+        <div class="sidebarItem">
+            <router-link to="/robot">Robot</router-link>
+        </div>
     </div>
 </template>
 
@@ -26,5 +22,31 @@ export default {
 </script>
 
 <style>
+.sidebar {
+    width: 100%;
+    max-width: 40vw;
+    height: 100vh;
+    padding: 2em;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 0 1rem 0.2rem #999 !important;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
 
+.sidebarItem {
+    padding: 0.5em;
+}
+
+.sidebarItem a.router-link-exact-active {
+    text-decoration: none;
+    color: rgb(20, 19, 19);
+}
+
+.sidebarItem:hover {
+    opacity: 0.5;
+    border-radius: 10px;
+    background-color: #999;
+    transition: 0.3s ease-in-out;
+}
 </style>

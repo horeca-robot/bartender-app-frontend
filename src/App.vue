@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
-    <NavBar/>
-    <router-view/>
+  <div class="layout--customer-app">
+    <NavBar />
+    <router-view />
   </div>
 </template>
 
@@ -12,30 +12,39 @@ import NavBar from '@/components/NavBar.vue'
 export default {
   name: 'Home',
   components: {
-    NavBar
+    NavBar,
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+html, body{
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  overflow-y: auto;
+  background-color: #eaeaea !important;
 }
 
-#nav {
-  padding: 30px;
+#main-content{
+  padding: 2rem;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.layout--customer-app{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto;
+  /* display: flex;
+  flex-direction: column; */
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+a {
+  color: unset !important;
+  text-decoration: unset !important;
 }
+
 </style>
