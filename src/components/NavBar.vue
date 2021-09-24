@@ -1,15 +1,19 @@
 <template>
     <div class="sidebar">
         <div class="sidebarItem">
+            <img class="icon" src="@/assets/home.svg"/> &nbsp;
             <router-link to="/">Home</router-link>
         </div>
         <div class="sidebarItem">
+            <img class="icon" src="@/assets/about.svg"/> &nbsp;
             <router-link to="/about">About</router-link>
         </div>
         <div class="sidebarItem">
+            <img class="icon" src="@/assets/order.svg"/> &nbsp;
             <router-link to="/orders">Orders</router-link>
         </div>
         <div class="sidebarItem">
+            <img class="iconRobot" src="@/assets/robot2.svg"/> &nbsp;
             <router-link to="/robot">Robot</router-link>
         </div>
     </div>
@@ -48,5 +52,16 @@ export default {
     border-radius: 10px;
     background-color: #999;
     transition: 0.3s ease-in-out;
+}
+
+.icon {
+    min-width: 2em;
+    max-width: 2em;
+}
+
+.iconRobot {
+    min-width: 2em;
+    max-width: 2em;
+    margin-left: -4px;
 }
 </style>
