@@ -47,4 +47,8 @@ a {
   text-decoration: unset !important;
 }
 
+.card {
+  border-radius: 10px !important;
+  box-shadow: 0 0 1rem 0.2rem #999 !important;
+}
 </style>
