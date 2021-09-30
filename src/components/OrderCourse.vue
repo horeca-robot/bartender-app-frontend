@@ -9,6 +9,7 @@
             :price="product.price"
             :description="product.description"
             :remarks="product.remarks"
+            :img_url="product.img_url"
         />
     </div>
 </template>
@@ -33,6 +34,6 @@ export default {
 
 <style>
 .order-course{
-        padding-top: 2em;
+    padding-top: 2em;
 }
 </style>

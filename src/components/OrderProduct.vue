@@ -2,7 +2,7 @@
     <div class="product card p-2 bg-light border">
         <div class="row g-0">
             <div class="col-md-4">
-            <img src="@/assets/Salad.jpeg" class="img-fluid rounded-start" alt="">
+            <img src="" class="img-fluid rounded-start" alt="">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -19,11 +19,10 @@
 <script>
 export default {
     name: 'OrderProduct',
-    props: ['id', 'name', 'price', 'description', 'remarks'],
+    props: ['id', 'name', 'price', 'description', 'remarks', 'img_url'],
     methods: {
         FireRemoveEvent()
         {
-
             this.$emit('removedProduct');
         }
     }

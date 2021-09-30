@@ -5,12 +5,15 @@
                 <div class="card">
                     <div class="card-body">
                         <p class="card-text">
-                            Payment Status: {{ paymentStatus }} <br>
-                            Created At: {{ createdAt }}
+                            #{{ order.id }} <br>
+                            Subtotal: {{order.subtotal}}<br>
+                            Payment Status: {{ order.payment_status }} <br>
+                            Created At: {{ order.created_at }} <br>
+                            Robot Id: {{ order.robot_id }}
                         </p>
                         <div class="order-courses">
                             <order-course 
-                            v-for="(course, index) in courses" v-bind:key="index"
+                            v-for="(course, index) in order.courses" v-bind:key="index"
 
                             :id="course.id"
                             :name="course.name"
@@ -28,6 +31,7 @@
 
 <script>
 import OrderCourse from '@/components/OrderCourse';
+import OrderService from '@/services/OrderService.js';
 
 export default {
     name: 'ViewOrder',
@@ -37,9 +41,8 @@ export default {
     data()
     {
         return {
-            paymentStatus: '',
-            createdAt: '',
-            courses: {}
+            order: {
+            }
         }
     },
     computed: {
@@ -62,47 +65,12 @@ export default {
             this.$data.order.products.splice(index, 1);
         },
         getInfo() {
-            this.paymentStatus = 'Completed';
-            this.createdAt = '24/09/2021 17:00';
-            this.courses = [
-                {
-                    id:'1',
-                    name: 'Voorgerechten',
-                    products: [
-                        {
-                            name: 'Salade',
-                            price: 8.29,
-                            description: 'Gezond',
-                            remarks: 'Met komkommer'
-                        }
-                    ]
-                },
-                {
-                    id:'1',
-                    name: 'Hoofdgerechten',
-                    products: [
-                        {
-                            name: 'Pizza Margharita',
-                            price: 6.49,
-                            description: 'Saaie pizza',
-                            remarks: 'Niks'
-                        },
-                        {
-                            name: 'Pizza Hawaii',
-                            price: 7.99,
-                            description: 'Ananas',
-                            remarks: 'Zonder Ananas'
-                        }
-                    ]
-                }
-            ]
+            this.order = OrderService.getOrders()[0];
         }
     },
     mounted: function() {
         this.getInfo();
-        this.payment_status = this.paymentStatus;
-        this.created_at = this.createdAt;
-        //console.log(this.courses);
+        console.log(this.order);
     }
 }
 </script>
