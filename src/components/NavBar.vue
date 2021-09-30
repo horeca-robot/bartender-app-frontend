@@ -1,21 +1,35 @@
 <template>
     <div class="sidebar">
-        <div class="sidebarItem">
-            <img class="icon" src="@/assets/home.svg"/> &nbsp;
-            <router-link to="/">Home</router-link>
-        </div>
-        <div class="sidebarItem">
-            <img class="icon" src="@/assets/about.svg"/> &nbsp;
-            <router-link to="/about">About</router-link>
-        </div>
-        <div class="sidebarItem">
-            <img class="icon" src="@/assets/order.svg"/> &nbsp;
-            <router-link to="/orders">Orders</router-link>
-        </div>
-        <div class="sidebarItem">
-            <img class="iconRobot" src="@/assets/robot2.svg"/> &nbsp;
-            <router-link to="/robot">Robot</router-link>
-        </div>
+        <router-link to="/">
+            <div class="sidebarItem">
+                <img class="icon" src="@/assets/home.svg"/> &nbsp;
+                Home
+            </div>
+        </router-link>
+        <router-link to="/about">
+            <div class="sidebarItem">
+                <img class="icon" src="@/assets/about.svg"/> &nbsp;
+                About
+            </div>
+        </router-link>
+        <router-link to="/orders">
+            <div class="sidebarItem">
+                <img class="icon" src="@/assets/order.svg"/> &nbsp;
+                Orders
+            </div>
+        </router-link>
+        <router-link to="/orderview">
+            <div class="sidebarItem">
+                <img class="icon" src="@/assets/order.svg"/> &nbsp;
+                View Order
+            </div>
+        </router-link>
+        <router-link to="/robot">
+            <div class="sidebarItem">
+                <img class="iconRobot" src="@/assets/robot2.svg"/> &nbsp;
+                Robot
+            </div>
+        </router-link>
     </div>
 </template>
 
