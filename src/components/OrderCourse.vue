@@ -1,15 +1,10 @@
 <template>
     <div class="order-course d-grid gap-3">
-        <h1 class="text-center">{{ name }}</h1>
+        <h1 class="text-center">{{ course.name }}</h1>
         <order-product
-            v-for="(product, index) in products" v-bind:key="index"
+            v-for="(product, index) in course.products" v-bind:key="index"
 
-            :id="product.id"
-            :name="product.name"
-            :price="product.price"
-            :description="product.description"
-            :remarks="product.remarks"
-            :img_url="product.img_url"
+            :product="product"
         />
     </div>
 </template>
@@ -22,7 +17,7 @@ export default {
     components: {
         OrderProduct
     },
-    props: ['id', 'name', 'products'],
+    props: ['course'],
     methods: {
         FireRemoveEvent()
         {

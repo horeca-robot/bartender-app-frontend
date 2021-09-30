@@ -21,7 +21,7 @@ export default {
                           {
                               "id": 11,
                               "name": "Salad",
-                              "img": "https://imgur.com/gallery/cnu2RrM",
+                              "img": "https://i.imgur.com/Zq0iBJK.jpeg",
                               "price": 10.00,
                               "discount_price": 6.50,
                               "description": "Nice salad with cucumber",
@@ -38,7 +38,7 @@ export default {
                           {
                               "id": 8,
                               "name": "Friet",
-                              "img": "https://imgur.com/gallery/cnu2RrM",
+                              "img": "https://i.imgur.com/Zq0iBJK.jpeg",
                               "price": 7.00,
                               "discount_price": 6.50,
                               "description": "test description",
@@ -59,7 +59,7 @@ export default {
                           {
                               "id": 10,
                               "name": "Hamburger",
-                              "img": "https://imgur.com/gallery/cnu2RrM",
+                              "img": "https://i.imgur.com/Zq0iBJK.jpeg",
                               "price": 16.00,
                               "discount_price": 10.50,
                               "description": "Hamburger with beef patty",
@@ -86,7 +86,7 @@ export default {
                           {
                               "id": 11,
                               "name": "Salad",
-                              "img": "https://imgur.com/gallery/cnu2RrM",
+                              "img": "https://i.imgur.com/Zq0iBJK.jpeg",
                               "price": 10.00,
                               "discount_price": 6.50,
                               "description": "Nice salad with cucumber",
@@ -103,7 +103,7 @@ export default {
                           {
                               "id": 8,
                               "name": "Friet",
-                              "img": "https://imgur.com/gallery/cnu2RrM",
+                              "img": "https://i.imgur.com/Zq0iBJK.jpeg",
                               "price": 7.00,
                               "discount_price": 6.50,
                               "description": "test description",
@@ -124,7 +124,7 @@ export default {
                           {
                               "id": 10,
                               "name": "Hamburger",
-                              "img": "https://imgur.com/gallery/cnu2RrM",
+                              "img": "https://i.imgur.com/Zq0iBJK.jpeg",
                               "price": 16.00,
                               "discount_price": 10.50,
                               "description": "Hamburger with beef patty",
