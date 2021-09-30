@@ -9,7 +9,8 @@ export default {
               "id": 3,
               "subtotal": 70.0,
               "payment_status": "paid",
-              "created_id": "2021-09-22T09:15:15.918+00:00",
+              "status": "Done",
+              "created_at": "30-09-2021 14:52",
               "robot_id": 4,
               "courses": [
                   {
@@ -73,7 +74,8 @@ export default {
               "id": 4,
               "subtotal": 199.0,
               "payment_status": "paid",
-              "created_id": "2021-09-22T09:15:15.918+00:00",
+              "status": "Preparing",
+              "created_at": "30-09-2021 15:32",
               "robot_id": 5,
               "courses": [
                   {

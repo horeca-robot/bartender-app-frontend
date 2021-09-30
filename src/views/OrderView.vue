@@ -12,13 +12,13 @@
                             Robot Id: {{ order.robot_id }}
                         </p>
                         <div class="order-courses">
-                            <order-course 
+                            <order-course
                             v-for="(course, index) in order.courses" v-bind:key="index"
 
                             :id="course.id"
                             :name="course.name"
                             :products="course.products"
-                            
+
                             v-on:remove="RemoveProduct(index)"
                             />
                         </div>
@@ -43,17 +43,6 @@ export default {
         return {
             order: {
             }
-        }
-    },
-    computed: {
-        SubTotal: function()
-        {
-            let i = 0;
-            this.products.forEach((item)=>{
-                i += item.price;
-            })
-
-            return i;
         }
     },
     methods: {

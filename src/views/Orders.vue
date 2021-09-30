@@ -16,44 +16,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row" class="textTable">1</th>
+                                    <tr v-for="(order, index) in orders" v-bind:key="index">
+                                        <th scope="row" class="textTable">{{ order.id }}</th>
                                         <td>
                                             <select class="form-select textTable">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1" selected>Done</option>
-                                                <option value="2">Preparing</option>
-                                                <option value="3">Pending</option>
+                                                <option :value="order.status" selected disabled>{{order.status}}</option>
+                                                <option :value="order.status">Done</option>
+                                                <option :value="order.status">Prepared</option>
+                                                <option :value="order.status">Pending</option>
                                             </select>
                                         </td>
                                         <td><img class="icon mt-1" src="@/assets/delete.svg"> &nbsp; <img class="icon mt-1" src="@/assets/edit.svg"></td>
-                                        <td class="textTable">30-09-2021 13:20</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="textTable">2</th>
-                                        <td>
-                                            <select class="form-select textTable">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">Done</option>
-                                                <option value="2" selected>Preparing</option>
-                                                <option value="3">Pending</option>
-                                            </select>
-                                        </td>
-                                        <td><img class="icon mt-1" src="@/assets/delete.svg"> &nbsp; <img class="icon mt-1" src="@/assets/edit.svg"></td>
-                                        <td class="textTable">30-09-2021 14:20</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="textTable">3</th>
-                                        <td>
-                                            <select class="form-select textTable">
-                                                <option selected>Open this select menu</option>
-                                                <option value="1">Done</option>
-                                                <option value="2">Preparing</option>
-                                                <option value="3" selected>Pending</option>
-                                            </select>
-                                        </td>
-                                        <td><img class="icon mt-1" src="@/assets/delete.svg"> &nbsp; <img class="icon mt-1" src="@/assets/edit.svg"></td>
-                                        <td class="textTable">30-09-2021 15:22</td>
+                                        <td class="textTable">{{ order.created_at }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -66,9 +40,26 @@
 </template>
 
 <script>
-    export default {
-        name: 'Orders'
+import OrderService from '@/services/OrderService.js';
+
+export default {
+    name: 'Orders',
+    data()
+    {
+        return {
+            orders: {}
+        }
+    },
+    methods: {
+        getInfo() {
+            this.orders = OrderService.getOrders();
+        }
+    },
+    mounted: function() {
+        this.getInfo();
+        console.log(this.order);
     }
+}
 </script>
 
 <style scoped>

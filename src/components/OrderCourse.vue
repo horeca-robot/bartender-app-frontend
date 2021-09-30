@@ -1,7 +1,7 @@
 <template>
     <div class="order-course d-grid gap-3">
         <h1 class="text-center">{{ name }}</h1>
-        <order-product 
+        <order-product
             v-for="(product, index) in products" v-bind:key="index"
 
             :id="product.id"
