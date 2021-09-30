@@ -17,7 +17,7 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="(order, index) in orders" v-bind:key="index">
-                                        <th scope="row" class="textTable">{{ order.id }}</th>
+                                        <th scope="row" class="textTable"><router-link :to="'/orders/' + order.id">{{ order.id }}</router-link></th>
                                         <td>
                                             <select class="form-select textTable">
                                                 <option :value="order.status" selected disabled>{{order.status}}</option>

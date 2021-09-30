@@ -14,7 +14,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/orderview',
+    path: '/orders/:id',
     name: 'OrderView',
     component: OrderView
   },

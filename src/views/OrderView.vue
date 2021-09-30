@@ -42,12 +42,12 @@ export default {
     },
     methods: {
         getInfo() {
-            this.order = OrderService.getOrders()[0];
+            let id = this.$route.params.id;
+            this.order = OrderService.getOrderById(id);
         }
     },
     mounted: function() {
         this.getInfo();
-        console.log(this.order);
     }
 }
 </script>

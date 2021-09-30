@@ -18,12 +18,6 @@
                 Orders
             </div>
         </router-link>
-        <router-link to="/orderview">
-            <div class="sidebarItem">
-                <img class="icon" src="@/assets/order.svg"/> &nbsp;
-                View Order
-            </div>
-        </router-link>
         <router-link to="/robot">
             <div class="sidebarItem">
                 <img class="iconRobot" src="@/assets/robot2.svg"/> &nbsp;
