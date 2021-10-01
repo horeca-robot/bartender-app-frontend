@@ -13,6 +13,7 @@
                                             <th scope="col" class="textTable">OrderID</th>
                                             <th scope="col" class="textTable">Status</th>
                                             <th scope="col" class="textTable">Action</th>
+                                            <th scope="col" class="textTable">18+</th>
                                             <th scope="col" class="textTable">Time</th>
                                         </tr>
                                     </thead>
@@ -28,6 +29,8 @@
                                                 </select>
                                             </td>
                                             <td><img class="icon mt-1" src="@/assets/delete.svg"> &nbsp; <img class="icon mt-1" src="@/assets/edit.svg"></td>
+                                            <td v-if="order.alcohol" class="textTable trueAlcohol">Bevat alcohol</td>
+                                            <td v-else class="textTable falseAlcohol">Bevat geen alcohol</td>
                                             <td class="textTable">{{ order.created_at }}</td>
                                         </tr>
                                     </tbody>
@@ -55,7 +58,7 @@ export default {
     methods: {
         getInfo() {
             this.orders = OrderService.getOrders();
-        }
+        },
     },
     mounted: function() {
         this.getInfo();
@@ -83,5 +86,13 @@ export default {
 
     .textTable {
         font-size: 1.3em;
+    }
+
+    .trueAlcohol {
+        color: rgb(235, 69, 69);
+    }
+
+    .falseAlcohol {
+        color: rgb(74, 235, 74);
     }
 </style>
