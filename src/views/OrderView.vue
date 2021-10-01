@@ -1,28 +1,30 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-auto col-md-12 col-sm-12 my-3">
-                <div class="card">
-                    <div class="card-body">
-                        <p class="card-text">
-                            #{{ order.id }} <br>
-                            Subtotal: {{order.subtotal}}<br>
-                            Payment Status: {{ order.payment_status }} <br>
-                            Created At: {{ order.created_at }} <br>
-                            Robot Id: {{ order.robot_id }}
-                        </p>
-                        <div class="order-courses">
-                            <order-course
-                            v-for="(course, index) in order.courses" v-bind:key="index"
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-auto col-md-12 col-sm-12 my-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">
+                                #{{ order.id }} <br>
+                                Subtotal: {{order.subtotal}}<br>
+                                Payment Status: {{ order.payment_status }} <br>
+                                Created At: {{ order.created_at }} <br>
+                                Robot Id: {{ order.robot_id }}
+                            </p>
+                            <div class="order-courses">
+                                <order-course
+                                v-for="(course, index) in order.courses" v-bind:key="index"
 
-                            :course="course"
-                            />
+                                :course="course"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 </template>
 
 <script>
@@ -53,11 +55,6 @@ export default {
 </script>
 
 <style scoped>
-  main{
-    width: 95%;
-    margin: auto;
-  }
-
   .order-products{
     padding: 2em;
   }

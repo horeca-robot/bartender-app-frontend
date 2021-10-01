@@ -34,6 +34,12 @@ html, body{
   padding: 2rem;
 }
 
+main {
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+}
+
 .layout--customer-app{
   display: grid;
   grid-template-columns: auto 1fr;
@@ -49,6 +55,6 @@ a {
 
 .card {
   border-radius: 10px !important;
-  box-shadow: 0 0 1rem 0.2rem #999 !important;
+  box-shadow: 0 0 0.5rem 0.2rem #bbb !important;
 }
 </style>
