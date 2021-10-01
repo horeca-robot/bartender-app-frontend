@@ -10,10 +10,10 @@
                     <p class="card-text">{{ product.description }}</p>
                     <p class="card-text"><small class="text-muted">{{ product.remarks }}</small></p>
                 </div>
-            <div @click="FireRemoveEvent" class="product__remove"></div>
+                <div @click="FireRemoveEvent" class="product__remove"></div>
             </div>
         </div>
-  </div>
+    </div>
 </template>
 
 <script>

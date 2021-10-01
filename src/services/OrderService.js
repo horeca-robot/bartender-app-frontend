@@ -2,9 +2,7 @@
 
 export default {
     getList(){
-        let res = [];
-
-        res.data = [
+        let data = [
             {
                 "id": 3,
                 "subtotal": 70.0,
@@ -148,7 +146,7 @@ export default {
                 ]
             },
         ]
-      return res.data;
+      return data;
     },
 
     getOrders() {

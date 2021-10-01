@@ -24,6 +24,12 @@
                 Robot
             </div>
         </router-link>
+        <router-link to="/orders/edit/products">
+            <div class="sidebarItem">
+                <img class="icon" src="@/assets/about.svg"/> &nbsp;
+                Products
+            </div>
+        </router-link>
     </div>
 </template>
 
