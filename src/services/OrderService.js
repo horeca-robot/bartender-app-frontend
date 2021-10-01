@@ -10,6 +10,7 @@ export default {
                 "subtotal": 70.0,
                 "payment_status": "paid",
                 "status": "Done",
+                "alcohol": false,
                 "created_at": "30-09-2021 14:52",
                 "robot_id": 4,
                 "courses": [
@@ -75,6 +76,7 @@ export default {
                 "subtotal": 199.0,
                 "payment_status": "paid",
                 "status": "Preparing",
+                "alcohol": true,
                 "created_at": "30-09-2021 15:32",
                 "robot_id": 5,
                 "courses": [
@@ -131,6 +133,16 @@ export default {
                                 "alcohol": false,
                                 "byProduct": []
                             },
+                            {
+                                "id": 11,
+                                "name": "Bier",
+                                "img": "https://www.drinks4you.eu/wp-content/uploads/2021/05/091501.-600x600.jpg",
+                                "price": 4.00,
+                                "discount_price": 0.00,
+                                "description": "Corona bier",
+                                "alcohol": true,
+                                "byProduct": []
+                            }
                         ]
                     },
                 ]
