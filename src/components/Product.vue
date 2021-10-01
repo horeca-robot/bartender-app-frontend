@@ -14,7 +14,7 @@
                             <a @click="flip = !flip" v-b-toggle="'accordion-1' + product.id" variant="info">
                                 <div class="p-2">
                                     <b class="p-1">Side products</b>
-                                    <img class="icon arrowImg me-2" src="@/assets/arrow.svg" :class="{'arrowImgFlip':flip}">
+                                    <img class="icon arrowImg me-2" src="/assets/img/arrow.svg" :class="{'arrowImgFlip':flip}">
                                 </div>
                             </a>
                             <b-collapse :id="'accordion-1' + product.id" accordion="my-accordion" role="tabpanel">
@@ -54,12 +54,12 @@
     .arrowImg {
         float: right;
         transform: rotate(0deg);
-        transition: all 0.5s ease;
+        transition: all 0.4s ease;
     }
 
     .arrowImgFlip {
         float: right;
         transform: rotate(180deg);
-        transition: all 0.5s ease;
+        transition: all 0.4s ease;
     }
 </style>

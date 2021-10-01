@@ -15,12 +15,12 @@ export default {
                     {
                         "id": 1,
                         "index": 1,
-                        "name": "Voorgerecht",
+                        "name": "Appetizer",
                         "products": [
                             {
                                 "id": 11,
                                 "name": "Salad",
-                                "img": "https://i.imgur.com/Zq0iBJK.jpeg",
+                                "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Salad_platter.jpg/1200px-Salad_platter.jpg",
                                 "price": 10.00,
                                 "discount_price": 6.50,
                                 "description": "Nice salad with cucumber",
@@ -32,12 +32,12 @@ export default {
                     {
                         "id": 2,
                         "index": 2,
-                        "name": "Hoofdgerecht",
+                        "name": "Main Course",
                         "products": [
                             {
                                 "id": 8,
                                 "name": "Friet",
-                                "img": "https://i.imgur.com/Zq0iBJK.jpeg",
+                                "img": "https://www.seriouseats.com/thmb/_BkW9V2wK3Zed-zQAETkRSJS8ac=/1500x1125/filters:fill(auto,1)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2018__04__20180309-french-fries-vicky-wasik-15-5a9844742c2446c7a7be9fbd41b6e27d.jpg",
                                 "price": 7.00,
                                 "discount_price": 6.50,
                                 "description": "test description",
@@ -58,7 +58,7 @@ export default {
                             {
                                 "id": 10,
                                 "name": "Hamburger",
-                                "img": "https://i.imgur.com/Zq0iBJK.jpeg",
+                                "img": "https://assets.biggreenegg.eu/app/uploads/2019/03/28145521/topimage-classic-hamburger-2019m04-800x534.jpg",
                                 "price": 16.00,
                                 "discount_price": 10.50,
                                 "description": "Hamburger with beef patty",
@@ -81,12 +81,12 @@ export default {
                     {
                         "id": 1,
                         "index": 1,
-                        "name": "Voorgerecht",
+                        "name": "Appetizer",
                         "products": [
                             {
                                 "id": 11,
                                 "name": "Salad",
-                                "img": "https://i.imgur.com/Zq0iBJK.jpeg",
+                                "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Salad_platter.jpg/1200px-Salad_platter.jpg",
                                 "price": 10.00,
                                 "discount_price": 6.50,
                                 "description": "Nice salad with cucumber",
@@ -98,15 +98,15 @@ export default {
                     {
                         "id": 2,
                         "index": 2,
-                        "name": "Hoofdgerecht",
+                        "name": "Main Course",
                         "products": [
                             {
                                 "id": 8,
                                 "name": "Friet",
-                                "img": "https://i.imgur.com/Zq0iBJK.jpeg",
+                                "img": "https://www.seriouseats.com/thmb/_BkW9V2wK3Zed-zQAETkRSJS8ac=/1500x1125/filters:fill(auto,1)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2018__04__20180309-french-fries-vicky-wasik-15-5a9844742c2446c7a7be9fbd41b6e27d.jpg",
                                 "price": 7.00,
                                 "discount_price": 6.50,
-                                "description": "test description",
+                                "description": "Test description",
                                 "alcohol": false,
                                 "byProduct": [
                                     {
@@ -124,7 +124,7 @@ export default {
                             {
                                 "id": 10,
                                 "name": "Hamburger",
-                                "img": "https://i.imgur.com/Zq0iBJK.jpeg",
+                                "img": "https://assets.biggreenegg.eu/app/uploads/2019/03/28145521/topimage-classic-hamburger-2019m04-800x534.jpg",
                                 "price": 16.00,
                                 "discount_price": 10.50,
                                 "description": "Hamburger with beef patty",

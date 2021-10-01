@@ -1,33 +1,9 @@
 <template>
     <div class="sidebar">
-        <router-link to="/">
+        <router-link :to="navLink.path" v-for="(navLink, index) in navLinks" :key="index">
             <div class="sidebarItem">
-                <img class="icon" src="@/assets/home.svg"/> &nbsp;
-                Home
-            </div>
-        </router-link>
-        <router-link to="/about">
-            <div class="sidebarItem">
-                <img class="icon" src="@/assets/about.svg"/> &nbsp;
-                About
-            </div>
-        </router-link>
-        <router-link to="/orders">
-            <div class="sidebarItem">
-                <img class="icon" src="@/assets/order.svg"/> &nbsp;
-                Orders
-            </div>
-        </router-link>
-        <router-link to="/robot">
-            <div class="sidebarItem">
-                <img class="iconRobot" src="@/assets/robot2.svg"/> &nbsp;
-                Robot
-            </div>
-        </router-link>
-        <router-link to="/orders/edit/products">
-            <div class="sidebarItem">
-                <img class="icon" src="@/assets/about.svg"/> &nbsp;
-                Products
+                <img class="icon" :src="navLink.icon"/> &nbsp;
+                {{ navLink.name }}
             </div>
         </router-link>
     </div>
@@ -35,7 +11,28 @@
 
 <script>
 export default {
-    name:  'NavBar'
+    name:  'NavBar',
+    data() {
+        return {
+            navLinks: [
+                {
+                    path: '/orders',
+                    name: 'Orders',
+                    icon: '/assets/img/order.svg'
+                },
+                {
+                    path: '/orders/edit/products',
+                    name: 'Products',
+                    icon: '/assets/img/about.svg'
+                },
+                {
+                    path: '/robot',
+                    name: 'Robots',
+                    icon: '/assets/img/robot2.svg'
+                },
+            ]
+        }
+    }
 }
 </script>
 

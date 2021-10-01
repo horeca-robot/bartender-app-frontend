@@ -4,7 +4,7 @@ export default {
             {
                 "id": 1,
                 "name": "Hamburger",
-                "img": "https://i.imgur.com/Zq0iBJK.jpeg",
+                "img": "https://assets.biggreenegg.eu/app/uploads/2019/03/28145521/topimage-classic-hamburger-2019m04-800x534.jpg",
                 "price": 12.00,
                 "discount_price": 9.60,
                 "description": "Hamburger with a 250g beef patty.",
@@ -13,7 +13,7 @@ export default {
                     {
                         "id": 2,
                         "name": "Fries",
-                        "img": "https://i.imgur.com/Zq0iBJK.jpeg",
+                        "img": "https://www.seriouseats.com/thmb/_BkW9V2wK3Zed-zQAETkRSJS8ac=/1500x1125/filters:fill(auto,1)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2018__04__20180309-french-fries-vicky-wasik-15-5a9844742c2446c7a7be9fbd41b6e27d.jpg",
                         "price": 4.00,
                         "discount_price": 2.60,
                         "description": "Crispy salted french fries.",
@@ -24,30 +24,30 @@ export default {
             },
             {
                 "id": 2,
-                "name": "Friet",
-                "img": "https://i.imgur.com/Zq0iBJK.jpeg",
+                "name": "Fries",
+                "img": "https://www.seriouseats.com/thmb/_BkW9V2wK3Zed-zQAETkRSJS8ac=/1500x1125/filters:fill(auto,1)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2018__04__20180309-french-fries-vicky-wasik-15-5a9844742c2446c7a7be9fbd41b6e27d.jpg",
                 "price": 7.00,
                 "discount_price": 6.50,
-                "description": "test description",
+                "description": "Crispy salted french fries.",
                 "alcohol": false,
                 "byProduct": [
                     {
                         "id": 5,
                         "name": "Mayo",
-                        "img": "https://i.imgur.com/Zq0iBJK.jpeg",
+                        "img": "https://i.okokorecepten.nl/recipegroups/themas/sauzen/mayonaise-750.jpg",
                         "price": 1.00,
                         "discount_price": 0.50,
-                        "description": "Sauce.",
+                        "description": "Sauce",
                         "alcohol": false,
                         "byProduct": []
                     },
                     {
                         "id": 6,
                         "name": "Ketchup",
-                        "img": "https://i.imgur.com/Zq0iBJK.jpeg",
+                        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0IxOvzQO4LdW3maTtFkgH3igGZ43SnUUFEA&usqp=CAU",
                         "price": 1.00,
                         "discount_price": 0.50,
-                        "description": "Sauce.",
+                        "description": "Sauce",
                         "alcohol": false,
                         "byProduct": []
                     },
@@ -56,7 +56,7 @@ export default {
             {
                 "id": 11,
                 "name": "Salad",
-                "img": "https://i.imgur.com/Zq0iBJK.jpeg",
+                "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Salad_platter.jpg/1200px-Salad_platter.jpg",
                 "price": 10.00,
                 "discount_price": 6.50,
                 "description": "Nice salad with cucumber",

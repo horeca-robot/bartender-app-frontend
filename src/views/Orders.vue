@@ -28,7 +28,7 @@
                                                     <option :value="order.status">Pending</option>
                                                 </select>
                                             </td>
-                                            <td><img class="icon mt-1" src="@/assets/delete.svg"> &nbsp; <img class="icon mt-1" src="@/assets/edit.svg"></td>
+                                            <td><img class="icon mt-1" src="/assets/img/delete.svg"> &nbsp; <img class="icon mt-1" src="/assets/img/edit.svg"></td>
                                             <td v-if="order.alcohol" class="textTable trueAlcohol">Bevat alcohol</td>
                                             <td v-else class="textTable falseAlcohol">Bevat geen alcohol</td>
                                             <td class="textTable">{{ order.created_at }}</td>
@@ -62,7 +62,6 @@ export default {
     },
     mounted: function() {
         this.getInfo();
-        console.log(this.order);
     }
 }
 </script>
