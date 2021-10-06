@@ -1,3 +1,5 @@
+import axios from "axios"
+
 export default {
     getList(){
         let data = [
@@ -68,7 +70,8 @@ export default {
         return data;
     },
 
-    getProducts() {
-        return this.getList();
+    async getProducts() {
+        let res = await axios.get("http://localhost:8080/api/v1/product");
+        return res.data;
     },
 }

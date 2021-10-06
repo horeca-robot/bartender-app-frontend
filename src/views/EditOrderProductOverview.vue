@@ -34,8 +34,9 @@ export default {
         }
     },
     methods: {
-        getInfo() {
-            this.products = ProductService.getProducts();
+        async getInfo() {
+            this.products = await ProductService.getProducts();
+            console.log(this.products);
         }
     },
     mounted: function() {

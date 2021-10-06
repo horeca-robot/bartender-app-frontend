@@ -2,7 +2,7 @@
     <div class="product card p-2 bg-light border">
         <div class="row g-0">
             <div class="col-md-3">
-                <img :src="product.img" class="img-fluid rounded-start">
+                <img :src="product.image" class="img-fluid rounded-start">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -40,7 +40,7 @@
             return {'flip': false}
         },
         methods: {
-            checkForSideProducts() {
+            async checkForSideProducts() {
                 if (this.product.byProduct.length > 0) {
                     return true;
                 }
