@@ -29,8 +29,8 @@
                                                 </select>
                                             </td>
                                             <td><img class="icon mt-1" src="/assets/img/delete.svg"> &nbsp; <img class="icon mt-1" src="/assets/img/edit.svg"></td>
-                                            <td v-if="order.alcohol" class="textTable trueAlcohol">Bevat alcohol</td>
-                                            <td v-else class="textTable falseAlcohol">Bevat geen alcohol</td>
+                                            <td v-if="order.alcohol" class="textTable trueAlcohol">Contains alcohol</td>
+                                            <td v-else class="textTable falseAlcohol">Doesn't contain alcohol</td>
                                             <td class="textTable">{{ order.created_at }}</td>
                                         </tr>
                                     </tbody>
