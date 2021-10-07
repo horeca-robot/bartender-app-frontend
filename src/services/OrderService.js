@@ -67,6 +67,23 @@ export default {
                             },
                         ]
                     },
+                    {
+                        "id": 8,
+                        "index": 3,
+                        "name": "Dessert",
+                        "products": [
+                            {
+                                "id": 16,
+                                "name": "Icecream",
+                                "img": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Ice_cream_with_whipped_cream%2C_chocolate_syrup%2C_and_a_wafer_%28cropped%29.jpg",
+                                "price": 5.00,
+                                "discount_price": 4.50,
+                                "description": "Vanilla icecream with chocolate sauce",
+                                "alcohol": false,
+                                "byProduct": [ ]
+                            },
+                        ]
+                    },
                 ]
             },
             {
