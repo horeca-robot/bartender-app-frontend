@@ -7,10 +7,9 @@
                         <div class="card-body">
                             <p class="card-text">
                                 #{{ order.id }} <br>
-                                Subtotal: {{order.subtotal}}<br>
-                                Payment Status: {{ order.payment_status }} <br>
+                                Subtotal: {{order.subTotal}}<br>
+                                Payment Status: {{ order.paymentStatus }} <br>
                                 Created At: {{ order.created_at }} <br>
-                                Robot Id: {{ order.robot_id }}
                             </p>
                             <div class="order-courses">
                                 <order-course
@@ -43,9 +42,9 @@ export default {
         }
     },
     methods: {
-        getInfo() {
-            let id = this.$route.params.id;
-            this.order = OrderService.getOrderById(id);
+        async getInfo() {
+            const id = this.$route.params.id;
+            this.order = await OrderService.getOrderById(id);
         }
     },
     mounted: function() {
