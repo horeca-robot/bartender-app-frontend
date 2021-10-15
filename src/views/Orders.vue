@@ -5,7 +5,12 @@
                 <div class="col-auto col-md-12 col-sm-12 my-3">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h5 class="card-title text-center py-3">All orders</h5>
+                            <div class="d-flex justify-content-between">
+                                <h5 class="card-title text-center d-inline-block">All orders</h5>
+                                <div class="form-group d-inline-flex">
+                                    <button class="btn btn-primary ms-3 mb-3">New</button>
+                                </div>
+                            </div>
                             <div class="table-responsive">
                                 <table class="table table-striped table-hover">
                                     <thead>
@@ -19,7 +24,7 @@
                                     </thead>
                                     <tbody>
                                         <tr v-for="(order, index) in orders" v-bind:key="index">
-                                            <th scope="row" class="textTable"><router-link :to="'/orders/' + order.id">{{ order.table != null ? order.table.tableNumber : 'N/A' }}</router-link></th>
+                                            <th scope="row" class="textTable"><router-link :to="'/order/' + order.id">{{ order.table != null ? order.table.tableNumber : 'N/A' }}</router-link></th>
                                             <td>
                                                 <select @change="updateOrderStatus" class="form-select textTable" v-model="order.paymentStatus" :data-id="order.id">
                                                     <!-- <option :value="order.status" selected disabled>{{order.status}}</option> -->
@@ -55,7 +60,7 @@ export default {
     {
         return {
             orders: {},
-            orderStatusses: []
+            orderStatusses: [],
         }
     },
     methods: {
@@ -121,5 +126,9 @@ export default {
 
     .falseAlcohol {
         color: rgb(74, 235, 74);
+    }
+
+    .floatRight {
+        float:right;
     }
 </style>

@@ -190,7 +190,7 @@ export default {
 
     /**
      * Retrieves all available status codes from the order
-     * 
+     *
      * @return Array
      */
     async getStatusses(type = 'payment')
@@ -206,7 +206,7 @@ export default {
 
     /**
      * Retrieves all orders
-     * 
+     *
      * @return Array
      */
     async getOrders()
@@ -222,7 +222,7 @@ export default {
 
     /**
      * Retrieves a specific order by ID
-     * 
+     *
      * @return null, Object
      */
     async getOrderById(orderID)

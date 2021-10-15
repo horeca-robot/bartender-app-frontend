@@ -10,6 +10,11 @@
                                 Subtotal: {{order.subTotal}}<br>
                                 Payment Status: {{ order.paymentStatus }} <br>
                                 Created At: {{ order.created_at }} <br>
+                                <select class="form-select mb-3" aria-label="Default select example">
+                                    <v-if></v-if>
+                                    <option readonly disabled selected value="">Choose table number</option>
+                                    <option v-for="(restaurantTable, index) in restaurantTables" :key="index" :value="restaurantTable.tableNumber">{{ restaurantTable.tableNumber }}</option>
+                                </select>
                             </p>
                             <div class="order-courses">
                                 <order-course
@@ -29,26 +34,35 @@
 <script>
 import OrderCourse from '@/components/OrderCourse';
 import OrderService from '@/services/OrderService.js';
+import TableService from '@/services/TableService.js';
 
 export default {
-    name: 'ViewOrder',
+    name: 'CreateAndUpdateOrder',
     components: {
         OrderCourse
     },
     data()
     {
         return {
-            order: {}
+            order: {},
+            isUpdateRoute: true,
+            restaurantTables: [],
         }
     },
     methods: {
         async getInfo() {
             const id = this.$route.params.id;
             this.order = await OrderService.getOrderById(id);
+        },
+        async getRestaurantTables() {
+            this.restaurantTables = await TableService.getAll();
         }
     },
     mounted: function() {
-        this.getInfo();
+        this.getRestaurantTables();
+        if (this.isUpdateRoute) {
+            this.getInfo();
+        }
     }
 }
 </script>
