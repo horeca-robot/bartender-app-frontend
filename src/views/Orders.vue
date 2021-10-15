@@ -10,7 +10,7 @@
                                 <table class="table table-striped table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="textTable">OrderID</th>
+                                            <th scope="col" class="textTable">Table ID</th>
                                             <th scope="col" class="textTable">Status</th>
                                             <th scope="col" class="textTable">Action</th>
                                             <th scope="col" class="textTable">18+</th>
@@ -19,13 +19,15 @@
                                     </thead>
                                     <tbody>
                                         <tr v-for="(order, index) in orders" v-bind:key="index">
-                                            <th scope="row" class="textTable"><router-link :to="'/orders/' + order.id">{{ order.id }}</router-link></th>
+                                            <th scope="row" class="textTable"><router-link :to="'/orders/' + order.id">{{ order.table != null ? order.table.tableNumber : 'N/A' }}</router-link></th>
                                             <td>
-                                                <select class="form-select textTable">
-                                                    <option :value="order.status" selected disabled>{{order.status}}</option>
-                                                    <option :value="order.status">Done</option>
-                                                    <option :value="order.status">Prepared</option>
-                                                    <option :value="order.status">Pending</option>
+                                                <select @change="updateOrderStatus" class="form-select textTable" v-model="order.paymentStatus" :data-id="order.id">
+                                                    <!-- <option :value="order.status" selected disabled>{{order.status}}</option> -->
+                                                    <option
+                                                        v-for="(status, index) in orderStatusses" :key="index"
+
+                                                        :value="status"
+                                                    >{{ status }}</option>
                                                 </select>
                                             </td>
                                             <td><img class="icon mt-1" src="/assets/img/delete.svg"> &nbsp; <img class="icon mt-1" src="/assets/img/edit.svg"></td>
@@ -52,13 +54,39 @@ export default {
     data()
     {
         return {
-            orders: {}
+            orders: {},
+            orderStatusses: []
         }
     },
     methods: {
-        getInfo() {
-            this.orders = OrderService.getOrders();
+        async getInfo() {
+            this.orders = await OrderService.getOrders();
+            this.orderStatusses = await OrderService.getStatusses();
         },
+        async updateOrderStatus(e) {
+            const selectBox = e.target;
+
+            if(!(selectBox instanceof Element) || !selectBox.hasAttribute('data-id'))
+                return;
+
+            const orderId = selectBox.getAttribute('data-id');
+            const order = this.getOrderFromOrdersByID(orderId);
+
+            if(order == null)
+                return;
+
+            if(!await OrderService.updateOrder(order)) {
+                alert('Could not update order, please try again later.');
+            }
+        },
+        getOrderFromOrdersByID(orderId) {
+            for(const order of this.orders) {
+                if(order.id == orderId)
+                    return order;
+            }
+
+            return null;
+        }
     },
     mounted: function() {
         this.getInfo();
