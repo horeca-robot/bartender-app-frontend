@@ -10,7 +10,7 @@
                                 <table class="table table-striped table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="textTable">Table ID</th>
+                                            <th scope="col" class="textTable">Table Number</th>
                                             <th scope="col" class="textTable">Status</th>
                                             <th scope="col" class="textTable">Action</th>
                                             <th scope="col" class="textTable">18+</th>
