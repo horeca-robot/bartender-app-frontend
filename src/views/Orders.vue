@@ -16,7 +16,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col" class="textTable">Table Number</th>
-                                            <th scope="col" class="textTable">Status</th>
+                                            <!--<th scope="col" class="textTable">Status</th> -->
                                             <th scope="col" class="textTable">Action</th>
                                             <th scope="col" class="textTable">18+</th>
                                             <th scope="col" class="textTable">Time</th>
@@ -25,20 +25,20 @@
                                     <tbody>
                                         <tr v-for="(order, index) in orders" v-bind:key="index">
                                             <th scope="row" class="textTable"><router-link :to="'/order/' + order.id">{{ order.table != null ? order.table.tableNumber : 'N/A' }}</router-link></th>
-                                            <td>
-                                                <select @change="updateOrderStatus" class="form-select textTable" v-model="order.paymentStatus" :data-id="order.id">
-                                                    <!-- <option :value="order.status" selected disabled>{{order.status}}</option> -->
-                                                    <option
+                                            <!-- <td>
+                                                <select @change="updateOrderStatus" class="form-select textTable" v-model="order.delivery" :data-id="order.id">
+                                                        <option :value="order.status" selected disabled>{{order.status}}</option>
+                                                        <option
                                                         v-for="(status, index) in orderStatusses" :key="index"
 
                                                         :value="status"
                                                     >{{ status }}</option>
                                                 </select>
-                                            </td>
+                                            </td> -->
                                             <td><img class="icon mt-1" src="/assets/img/delete.svg"> &nbsp; <img class="icon mt-1" src="/assets/img/edit.svg"></td>
                                             <td v-if="order.alcohol" class="textTable trueAlcohol">Contains alcohol</td>
                                             <td v-else class="textTable falseAlcohol">Doesn't contain alcohol</td>
-                                            <td class="textTable">{{ order.created_at }}</td>
+                                            <td class="textTable">{{ order.createdAt }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -59,14 +59,14 @@ export default {
     data()
     {
         return {
-            orders: {},
+            orders: [],
             orderStatusses: [],
         }
     },
     methods: {
         async getInfo() {
             this.orders = await OrderService.getOrders();
-            this.orderStatusses = await OrderService.getStatusses();
+            //this.orderStatusses = await OrderService.getStatusses();
         },
         async updateOrderStatus(e) {
             const selectBox = e.target;
