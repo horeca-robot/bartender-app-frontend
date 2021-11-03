@@ -38,7 +38,6 @@ export default {
     methods: {
         async getInfo() {
             this.products = await productService.getAll();
-            console.log(this.products);
         }
     },
     mounted: function() {
