@@ -38,7 +38,7 @@
                                                 </select>
                                             </td>
                                             <td><img class="icon mt-1" src="/assets/img/delete.svg"> &nbsp; <img class="icon mt-1" src="/assets/img/edit.svg"></td>
-                                            <td v-if="order.alcohol" class="textTable trueAlcohol">Contains alcohol</td>
+                                            <td v-if="checkIfOrderContainsAlcohol(order)" class="textTable trueAlcohol">Contains alcohol</td>
                                             <td v-else class="textTable falseAlcohol">Doesn't contain alcohol</td>
                                             <td class="textTable">{{ order.createdAt }}</td>
                                         </tr>
@@ -95,6 +95,13 @@ export default {
             }
 
             return null;
+        },
+        checkIfOrderContainsAlcohol(order){
+            for(const orderProduct of order.productOrders) {
+                if(orderProduct.product.containsAlcohol == true)
+                    return true;
+            }
+            return false;
         }
     },
     mounted: function() {
