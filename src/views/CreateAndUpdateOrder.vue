@@ -5,17 +5,17 @@
                 <div class="col-auto col-md-12 col-sm-12 my-3">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">
+                            <div class="card-text">
                                 #{{ order.id }} <br>
                                 Subtotal: {{order.subTotal}}<br>
-                                Payment Status: {{ order.paymentStatus }} <br>
-                                Created At: {{ order.created_at }} <br>
-                                <select class="form-select mb-3" aria-label="Default select example">
+                                Paid? <p class="d-inline-block" v-if="order.paid">Yes</p> <p v-else class="d-inline-block">No</p> <br>
+                                Created At: {{ order.createdAt }} <br>
+                                <!-- <select class="form-select mb-3" aria-label="Default select example">
                                     <v-if></v-if>
                                     <option readonly disabled selected value="">Choose table number</option>
                                     <option v-for="(restaurantTable, index) in restaurantTables" :key="index" :value="restaurantTable.tableNumber">{{ restaurantTable.tableNumber }}</option>
-                                </select>
-                            </p>
+                                </select> -->
+                            </div>
                             <div class="order-courses">
                                 <order-course
                                 v-for="(course, index) in order.courses" v-bind:key="index"

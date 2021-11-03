@@ -16,7 +16,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col" class="textTable">Table Number</th>
-                                            <th scope="col" class="textTable">Status</th>
+                                            <th scope="col" class="textTable">Paid?</th>
                                             <th scope="col" class="textTable">Action</th>
                                             <th scope="col" class="textTable">18+</th>
                                             <th scope="col" class="textTable">Time</th>
@@ -26,13 +26,15 @@
                                         <tr v-for="(order, index) in orders" v-bind:key="index">
                                             <th scope="row" class="textTable"><router-link :to="'/order/' + order.id">{{ order.table != null ? order.table.tableNumber : 'N/A' }}</router-link></th>
                                             <td>
-                                                <select @change="updateOrderStatus" class="form-select textTable" v-model="order.paymentStatus" :data-id="order.id">
+                                                <select @change="updateOrderStatus" class="form-select textTable" v-model="order.paid" :data-id="order.id">
                                                     <!-- <option :value="order.status" selected disabled>{{order.status}}</option> -->
-                                                    <option
+                                                    <!-- <option
                                                         v-for="(status, index) in orderStatusses" :key="index"
 
                                                         :value="status"
-                                                    >{{ status }}</option>
+                                                    >{{ status }}</option> -->
+                                                    <option :key="index" :value="true">Yes</option>
+                                                    <option :key="index" :value="false">No</option>
                                                 </select>
                                             </td>
                                             <td><img class="icon mt-1" src="/assets/img/delete.svg"> &nbsp; <img class="icon mt-1" src="/assets/img/edit.svg"></td>
@@ -82,7 +84,7 @@ export default {
             if(order == null)
                 return;
 
-            if(!await orderService.updateOrder(order)) {
+            if(!await orderService.update(order)) {
                 alert('Could not update order, please try again later.');
             }
         },
