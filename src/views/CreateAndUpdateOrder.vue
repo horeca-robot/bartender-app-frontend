@@ -16,12 +16,17 @@
                                     <option v-for="(restaurantTable, index) in restaurantTables" :key="index" :value="restaurantTable.tableNumber">{{ restaurantTable.tableNumber }}</option>
                                 </select> -->
                             </div>
-                            <div class="order-courses">
+                            <!--<div class="order-courses">
                                 <order-course
                                 v-for="(course, index) in order.courses" v-bind:key="index"
 
                                 :course="course"
                                 />
+                            </div> -->
+                            <div class="order-courses">
+                                <div v-for="(productOrder, productOrders) in order.productOrders" v-bind:key="productOrders">
+                                    <order-product v-for="(product, index) in productOrder.product" v-bind:key="index" :product="productOrder.product"/>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -32,7 +37,8 @@
 </template>
 
 <script>
-import OrderCourse from '@/components/OrderCourse';
+// import OrderCourse from '@/components/OrderCourse';
+import OrderProduct from '@/components/OrderProduct';
 import OrderService from '@/services/OrderService.js';
 import TableService from '@/services/TableService.js';
 
@@ -42,7 +48,8 @@ const tableService = new TableService();
 export default {
     name: 'CreateAndUpdateOrder',
     components: {
-        OrderCourse
+        // OrderCourse
+        OrderProduct
     },
     data()
     {
