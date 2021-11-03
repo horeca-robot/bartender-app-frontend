@@ -27,7 +27,7 @@
                             <div class="order-courses mt-4">
                                 <h2 class="mb-3">Products:</h2>
                                 <div v-for="(productOrder, index) in order.productOrders" v-bind:key="index">
-                                    <product v-bind:key="index" :product="productOrder.product"/>
+                                    <order-product v-bind:key="index" :orderProduct="productOrder"/>
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
 
 <script>
 // import OrderCourse from '@/components/OrderCourse';
-import Product from '@/components/Product';
+import OrderProduct from '@/components/OrderProduct';
 import OrderService from '@/services/OrderService.js';
 import TableService from '@/services/TableService.js';
 
@@ -51,7 +51,7 @@ export default {
     name: 'CreateAndUpdateOrder',
     components: {
         // OrderCourse
-        Product
+        OrderProduct
     },
     data()
     {
