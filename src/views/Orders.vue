@@ -24,7 +24,7 @@
                                     </thead>
                                     <tbody>
                                         <tr v-for="(order, index) in orders" v-bind:key="index">
-                                            <th scope="row" class="textTable"><router-link :to="'/order/' + order.id">{{ order.table != null ? order.table.tableNumber : 'N/A' }}</router-link></th>
+                                            <th scope="row" class="textTable"><router-link class="textID" :to="'/order/' + order.id">{{ order.table != null ? order.table.tableNumber : 'N/A' }}</router-link></th>
                                             <td>
                                                 <select @change="updateOrderStatus" class="form-select textTable" v-model="order.paid" :data-id="order.id">
                                                     <!-- <option :value="order.status" selected disabled>{{order.status}}</option> -->
@@ -36,7 +36,7 @@
                                                     <option :key="index" :value="true">Yes</option>
                                                     <option :key="index" :value="false">No</option>
                                                 </select>
-                                            </td> -->
+                                            </td>
                                             <td><img class="icon mt-1" src="/assets/img/delete.svg"> &nbsp; <img class="icon mt-1" src="/assets/img/edit.svg"></td>
                                             <td v-if="order.alcohol" class="textTable trueAlcohol">Contains alcohol</td>
                                             <td v-else class="textTable falseAlcohol">Doesn't contain alcohol</td>
@@ -134,5 +134,13 @@ export default {
 
     .floatRight {
         float:right;
+    }
+
+    .textID {
+        text-decoration: underline !important;
+    }
+
+    .textID:hover {
+        opacity: 0.5;
     }
 </style>
