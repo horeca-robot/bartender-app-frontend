@@ -20,6 +20,12 @@
         name: 'Product',
         props: ['product'],
         methods: {
+            checkForSideProducts() {
+                // if (this.product.byProduct.length > 0) {
+                //     return true;
+                // }
+                return false;
+            }
         }
     }
 </script>

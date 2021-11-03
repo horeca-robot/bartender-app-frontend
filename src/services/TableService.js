@@ -1,22 +1,9 @@
-import Request from "./Request";
-import AxiosClient from "./Client/AxiosClient";
+import BaseService from "./BaseService";
 
-const entity = 'restaurantTable';
-
-export default {
-    /**
-     * Retrieves all orders
-     *
-     * @return Array
-     */
-    async getAll()
+export default class extends BaseService
+{
+    constructor()
     {
-        const [response, error] = await Request(AxiosClient.get(`/${entity}`));
-
-        if(error !== null) {
-            return [];
-        }
-
-        return response.data;
-    },
+        super('restaurantTable');
+    }
 }
