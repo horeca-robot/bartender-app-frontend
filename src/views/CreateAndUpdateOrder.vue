@@ -36,6 +36,9 @@ import OrderCourse from '@/components/OrderCourse';
 import OrderService from '@/services/OrderService.js';
 import TableService from '@/services/TableService.js';
 
+const orderService = new OrderService();
+const tableService = new TableService();
+
 export default {
     name: 'CreateAndUpdateOrder',
     components: {
@@ -52,10 +55,10 @@ export default {
     methods: {
         async getInfo() {
             const id = this.$route.params.id;
-            this.order = await OrderService.getOrderById(id);
+            this.order = await orderService.getByID(id);
         },
         async getRestaurantTables() {
-            this.restaurantTables = await TableService.getAll();
+            this.restaurantTables = await tableService.getAll();
         }
     },
     mounted: function() {

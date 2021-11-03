@@ -54,6 +54,8 @@
 <script>
 import OrderService from '@/services/OrderService.js';
 
+const orderService = new OrderService();
+
 export default {
     name: 'Orders',
     data()
@@ -65,8 +67,8 @@ export default {
     },
     methods: {
         async getInfo() {
-            this.orders = await OrderService.getOrders();
-            this.orderStatusses = await OrderService.getStatusses();
+            this.orders = await orderService.getAll();
+            this.orderStatusses = await orderService.getDeliveryStatusses();
         },
         async updateOrderStatus(e) {
             const selectBox = e.target;
@@ -80,7 +82,7 @@ export default {
             if(order == null)
                 return;
 
-            if(!await OrderService.updateOrder(order)) {
+            if(!await orderService.updateOrder(order)) {
                 alert('Could not update order, please try again later.');
             }
         },

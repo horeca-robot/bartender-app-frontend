@@ -1,6 +1,13 @@
-// import axios from "axios"
+import BaseService from "./BaseService";
 
-export default {
+export default class extends BaseService
+{
+    constructor()
+    {
+        super('product');
+    }
+    
+    /*
     getList(){
         let data = [
             {
@@ -70,9 +77,15 @@ export default {
         return data;
     },
 
-    async getProducts() {
+    async getAll()
+    {
+        const [response, error] = Request(AxiosClient.get(`/product/`));
+
+        console.log(response);
+        console.log(error);
         // let res = await axios.get("http://localhost:8080/api/v1/product");
         // return res.data;
-        return this.getList();
+        // return this.getList();
     },
+    */
 }

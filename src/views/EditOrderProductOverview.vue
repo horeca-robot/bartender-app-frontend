@@ -22,6 +22,8 @@
 import ProductService from '@/services/ProductService.js';
 import Product from '@/components/Product';
 
+const productService = new ProductService();
+
 export default {
     name: "EditOrderProductOverview",
     components: {
@@ -35,7 +37,7 @@ export default {
     },
     methods: {
         async getInfo() {
-            this.products = await ProductService.getProducts();
+            this.products = await productService.getAll();
             console.log(this.products);
         }
     },
