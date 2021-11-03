@@ -6,10 +6,11 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="card-text">
-                                #{{ order.id }} <br>
-                                Subtotal: {{order.subTotal}}<br>
-                                Paid? <p class="d-inline-block" v-if="order.paid">Yes</p> <p v-else class="d-inline-block">No</p> <br>
-                                Created At: {{ order.createdAt }} <br>
+                                <b>Order ID:</b> #{{ order.id }} <br>
+                                <b>Subtotal:</b> {{order.subTotal}}<br>
+                                <b>Table Number:</b> {{order.table.tableNumber}}<br>
+                                <b>Paid?</b> <p class="d-inline-block" v-if="order.paid">Yes</p> <p v-else class="d-inline-block">No</p> <br>
+                                <b>Created At:</b> {{ order.createdAt }} <br>
                                 <!-- <select class="form-select mb-3" aria-label="Default select example">
                                     <v-if></v-if>
                                     <option readonly disabled selected value="">Choose table number</option>
@@ -23,9 +24,10 @@
                                 :course="course"
                                 />
                             </div> -->
-                            <div class="order-courses">
-                                <div v-for="(productOrder, productOrders) in order.productOrders" v-bind:key="productOrders">
-                                    <order-product v-for="(product, index) in productOrder.product" v-bind:key="index" :product="productOrder.product"/>
+                            <div class="order-courses mt-4">
+                                <h2 class="mb-3">Products:</h2>
+                                <div v-for="(productOrder, index) in order.productOrders" v-bind:key="index">
+                                    <product v-bind:key="index" :product="productOrder.product"/>
                                 </div>
                             </div>
                         </div>
@@ -38,7 +40,7 @@
 
 <script>
 // import OrderCourse from '@/components/OrderCourse';
-import OrderProduct from '@/components/OrderProduct';
+import Product from '@/components/Product';
 import OrderService from '@/services/OrderService.js';
 import TableService from '@/services/TableService.js';
 
@@ -49,7 +51,7 @@ export default {
     name: 'CreateAndUpdateOrder',
     components: {
         // OrderCourse
-        OrderProduct
+        Product
     },
     data()
     {
