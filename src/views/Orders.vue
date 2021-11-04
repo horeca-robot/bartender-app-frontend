@@ -24,23 +24,25 @@
                                     </thead>
                                     <tbody>
                                         <tr v-for="(order, index) in orders" v-bind:key="index">
-                                            <th scope="row" class="textTable"><router-link class="textID" :to="'/order/' + order.id">{{ order.table != null ? order.table.tableNumber : 'N/A' }}</router-link></th>
+                                            <th scope="row" class="textTable">
+                                                <router-link class="textID" :to="'/order/' + order.id">{{ order.table != null ? order.table.tableNumber : 'N/A' }}</router-link>
+                                            </th>
                                             <td>
                                                 <select @change="updateOrderStatus" class="form-select textTable" v-model="order.paid" :data-id="order.id">
-                                                    <!-- <option :value="order.status" selected disabled>{{order.status}}</option> -->
-                                                    <!-- <option
-                                                        v-for="(status, index) in orderStatusses" :key="index"
-
-                                                        :value="status"
-                                                    >{{ status }}</option> -->
                                                     <option :key="index" :value="true">Yes</option>
                                                     <option :key="index" :value="false">No</option>
                                                 </select>
                                             </td>
-                                            <td><img class="icon mt-1" src="/assets/img/delete.svg"> &nbsp; <img class="icon mt-1" src="/assets/img/edit.svg"></td>
+                                            <td>
+                                                <img class="icon mt-1" src="/assets/img/delete.svg">
+                                                &nbsp;
+                                                <router-link class="textID" :to="'/order/' + order.id">
+                                                    <img class="icon mt-1" src="/assets/img/edit.svg">
+                                                </router-link>
+                                            </td>
                                             <td v-if="checkIfOrderContainsAlcohol(order)" class="textTable trueAlcohol">Contains alcohol</td>
                                             <td v-else class="textTable falseAlcohol">Doesn't contain alcohol</td>
-                                            <td class="textTable">{{ order.createdAt }}</td>
+                                            <td class="textTable">{{ getProperTime(order.createdAt) }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -96,12 +98,23 @@ export default {
 
             return null;
         },
-        checkIfOrderContainsAlcohol(order){
+        checkIfOrderContainsAlcohol(order) {
             for(const orderProduct of order.productOrders) {
                 if(orderProduct.product.containsAlcohol == true)
                     return true;
             }
             return false;
+        },
+        getProperTime(time) {
+            const date = new Date(time);
+
+            if(!(date instanceof Date))
+                return time;
+
+            const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
+            const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
+
+            return `${date.getDate()}-${date.getMonth()}-${date.getFullYear()} ${hours}:${minutes}`;
         }
     },
     mounted: function() {
