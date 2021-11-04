@@ -1,16 +1,17 @@
 <template>
-    <div class="product card p-2 bg-light border">
+    <div class="product card p-2 bg-light border my-2">
         <div class="row g-0">
-            <div class="col-md-4">
-            <img :src="product.img" class="img-fluid rounded-start">
+            <div class="col-md-3">
+                <img :src="orderProduct.product.image" class="img-fluid rounded-start">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">&euro;{{product.price}} {{ product.name }} </h5>
-                    <p class="card-text">{{ product.description }}</p>
-                    <p class="card-text"><small class="text-muted">{{ product.remarks }}</small></p>
+                    <h5 class="card-title">{{ orderProduct.product.name }} - &euro;{{ orderProduct.product.price }}</h5>
+                    <p class="card-text">{{ orderProduct.product.description }}</p>
+                    <p class="card-text"><b>Status:</b> {{ orderProduct.orderStatus }}</p>
+                    <p class="card-text"><small class="text-muted">{{ orderProduct.product.remarks }}</small></p>
                 </div>
-                <div @click="FireRemoveEvent" class="product__remove"></div>
+                <!-- <div @click="FireRemoveEvent" class="product__remove"></div> -->
             </div>
         </div>
     </div>
@@ -19,7 +20,7 @@
 <script>
 export default {
     name: 'OrderProduct',
-    props: ['product'],
+    props: ['orderProduct'],
     methods: {
         FireRemoveEvent()
         {

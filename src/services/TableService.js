@@ -4,6 +4,6 @@ export default class extends BaseService
 {
     constructor()
     {
-        super('product');
+        super('restaurantTable');
     }
 }

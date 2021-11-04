@@ -5,13 +5,18 @@
                 <div class="col-auto col-md-12 col-sm-12 my-3">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h5 class="card-title text-center py-3">All orders</h5>
+                            <div class="d-flex justify-content-between">
+                                <h5 class="card-title text-center d-inline-block">All orders</h5>
+                                <div class="form-group d-inline-flex">
+                                    <button class="btn btn-primary ms-3 mb-3">New</button>
+                                </div>
+                            </div>
                             <div class="table-responsive">
                                 <table class="table table-striped table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="textTable">OrderID</th>
-                                            <th scope="col" class="textTable">Status</th>
+                                            <th scope="col" class="textTable">Table Number</th>
+                                            <th scope="col" class="textTable">Paid?</th>
                                             <th scope="col" class="textTable">Action</th>
                                             <th scope="col" class="textTable">18+</th>
                                             <th scope="col" class="textTable">Time</th>
@@ -19,19 +24,25 @@
                                     </thead>
                                     <tbody>
                                         <tr v-for="(order, index) in orders" v-bind:key="index">
-                                            <th scope="row" class="textTable"><router-link :to="'/orders/' + order.id">{{ order.id }}</router-link></th>
+                                            <th scope="row" class="textTable">
+                                                <router-link class="textID" :to="'/order/' + order.id">{{ order.table != null ? order.table.tableNumber : 'N/A' }}</router-link>
+                                            </th>
                                             <td>
-                                                <select class="form-select textTable">
-                                                    <option :value="order.status" selected disabled>{{order.status}}</option>
-                                                    <option :value="order.status">Done</option>
-                                                    <option :value="order.status">Prepared</option>
-                                                    <option :value="order.status">Pending</option>
+                                                <select @change="updateOrderStatus" class="form-select textTable" v-model="order.paid" :data-id="order.id">
+                                                    <option :key="index" :value="true">Yes</option>
+                                                    <option :key="index" :value="false">No</option>
                                                 </select>
                                             </td>
-                                            <td><img class="icon mt-1" src="/assets/img/delete.svg"> &nbsp; <img class="icon mt-1" src="/assets/img/edit.svg"></td>
-                                            <td v-if="order.alcohol" class="textTable trueAlcohol">Contains alcohol</td>
+                                            <td>
+                                                <img class="icon mt-1" src="/assets/img/delete.svg">
+                                                &nbsp;
+                                                <router-link class="textID" :to="'/order/' + order.id">
+                                                    <img class="icon mt-1" src="/assets/img/edit.svg">
+                                                </router-link>
+                                            </td>
+                                            <td v-if="checkIfOrderContainsAlcohol(order)" class="textTable trueAlcohol">Contains alcohol</td>
                                             <td v-else class="textTable falseAlcohol">Doesn't contain alcohol</td>
-                                            <td class="textTable">{{ order.created_at }}</td>
+                                            <td class="textTable">{{ getProperTime(order.createdAt) }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -47,18 +58,64 @@
 <script>
 import OrderService from '@/services/OrderService.js';
 
+const orderService = new OrderService();
+
 export default {
     name: 'Orders',
     data()
     {
         return {
-            orders: {}
+            orders: [],
+            orderStatusses: [],
         }
     },
     methods: {
-        getInfo() {
-            this.orders = OrderService.getOrders();
+        async getInfo() {
+            this.orders = await orderService.getAll();
+            this.orderStatusses = await orderService.getDeliveryStatusses();
         },
+        async updateOrderStatus(e) {
+            const selectBox = e.target;
+
+            if(!(selectBox instanceof Element) || !selectBox.hasAttribute('data-id'))
+                return;
+
+            const orderId = selectBox.getAttribute('data-id');
+            const order = this.getOrderFromOrdersByID(orderId);
+
+            if(order == null)
+                return;
+
+            if(!await orderService.update(order)) {
+                alert('Could not update order, please try again later.');
+            }
+        },
+        getOrderFromOrdersByID(orderId) {
+            for(const order of this.orders) {
+                if(order.id == orderId)
+                    return order;
+            }
+
+            return null;
+        },
+        checkIfOrderContainsAlcohol(order) {
+            for(const orderProduct of order.productOrders) {
+                if(orderProduct.product.containsAlcohol == true)
+                    return true;
+            }
+            return false;
+        },
+        getProperTime(time) {
+            const date = new Date(time);
+
+            if(!(date instanceof Date))
+                return time;
+
+            const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
+            const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
+
+            return `${date.getDate()}-${date.getMonth()}-${date.getFullYear()} ${hours}:${minutes}`;
+        }
     },
     mounted: function() {
         this.getInfo();
@@ -93,5 +150,17 @@ export default {
 
     .falseAlcohol {
         color: rgb(74, 235, 74);
+    }
+
+    .floatRight {
+        float:right;
+    }
+
+    .textID {
+        text-decoration: underline !important;
+    }
+
+    .textID:hover {
+        opacity: 0.5;
     }
 </style>
