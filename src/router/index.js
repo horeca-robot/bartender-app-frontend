@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import CreateAndUpdateOrder from '../views/CreateAndUpdateOrder.vue'
+import OrderDetail from '../views/OrderDetail.vue'
+import CreateOrder from '../views/CreateOrder.vue'
+import UpdateOrder from '../views/UpdateOrder.vue'
+import ProductOverview from '../views/ProductOverview.vue'
 
 Vue.use(VueRouter)
 
@@ -11,14 +14,24 @@ const routes = [
     component: () => import(/* webpackChunkName: "orders" */'@/views/Orders.vue')
   },
   {
-    path: '/order/:id',
-    name: 'CreateAndUpdateOrder',
-    component: CreateAndUpdateOrder
+    path: '/orders/create',
+    name: 'CreateOrder',
+    component: CreateOrder
   },
   {
-    path: '/orders/edit/products',
-    name: 'EditOrderProductOverview',
-    component: () => import(/* webpackChunkName: "orders-products" */'@/views/EditOrderProductOverview')
+    path: '/orders/:id',
+    name: 'OrderDetail',
+    component: OrderDetail
+  },
+  {
+    path: '/orders/update/:id',
+    name: 'UpdateOrder',
+    component: UpdateOrder
+  },
+  {
+    path: '/products',
+    name: 'ProductOverview',
+    component: ProductOverview
   },
   {
     path: '*',

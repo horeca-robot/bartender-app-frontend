@@ -50,11 +50,11 @@ export default class
      async create(entity)
      {
          const [,error] = await Request(AxiosClient.post(`/${this._entityType}`, entity));
- 
+
          if(error !== null) {
              return false;
          }
- 
+
          return true;
      }
 

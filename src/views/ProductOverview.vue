@@ -9,7 +9,6 @@
                             <div class="row p-2" v-for="(product, index) in products" :key="index">
                                 <Product :product="product"/>
                             </div>
-                            <button type="submit" class="btn btn-primary">Edit order</button>
                         </div>
                     </div>
                 </div>
@@ -25,7 +24,7 @@ import Product from '@/components/Product';
 const productService = new ProductService();
 
 export default {
-    name: "EditOrderProductOverview",
+    name: "ProductOverview",
     components: {
         Product,
     },
