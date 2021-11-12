@@ -6,7 +6,7 @@
         <!-- The modal -->
         <b-modal id="add-product-modal" size="xl" title="Add products">
             <div class="row p-2" v-for="(product) in this.products" :key="product.id" :id="product.id" >
-                <ProductWithCounter :productProp="product"/>
+                <ProductWithCounter :product="product"/>
             </div>
         </b-modal>
     </div>

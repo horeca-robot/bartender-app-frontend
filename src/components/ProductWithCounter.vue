@@ -27,12 +27,7 @@
 <script>
     export default {
         name: 'Product',
-        props: ['productProp'],
-        data() {
-            return {
-                product: {}
-            }
-        },
+        props: ['product'],
         methods: {
             plusProductCounter() {
                 if(this.product.count < 100) {
@@ -46,9 +41,6 @@
                 }
                 document.getElementById("productCounter" + this.product.id).innerHTML = this.product.count;
             },
-        },
-        mounted() {
-            this.product = this.productProp;
         }
     }
 </script>
