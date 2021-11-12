@@ -12,24 +12,7 @@
                             <option v-for="(restaurantTables, index) in restaurantTables" :key="index" :value="restaurantTables.id">{{ restaurantTables.tableNumber }}</option>
                         </select>
                     </div>
-                   <!-- Using value -->
-                    <b-button v-b-modal="'add-product-modal'">Add products</b-button>
-
-                    <!-- The modal -->
-                    <b-modal id="add-product-modal" size="xl" title="Add products">
-                        <div class="row p-2" v-for="(product, index) in products" :key="index">
-                            <div class="col-10">
-                                <Product :product="product"/>
-                            </div>
-                            <div class="col-2 vertical-center">
-                                <div class="btn-group" role="group" aria-label="Basic example" :id="product.id">
-                                    <button type="button" @click="minusProductCounter(index)" class="btn btn-primary"><img class="btnIcon" src="/assets/img/minus.png"></button>
-                                    <div class="bg-primary px-2"> <div class="mt-2 counterText" :id="'productCounter'+ product.id">{{ product.counter }}</div></div>
-                                    <button type="button" @click="plusProductCounter(index)" class="btn btn-primary"><img class="btnIcon" src="/assets/img/plus.png"></button>
-                                </div>
-                            </div>
-                        </div>
-                    </b-modal>
+                    <ProductSelectModal :products="products"/>
                    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
                 </div>
             </div>
@@ -40,7 +23,7 @@
 <script>
 import ProductService from '@/services/ProductService.js';
 import TableService from '@/services/TableService.js';
-import Product from '@/components/Product';
+import ProductSelectModal from '@/components/ProductSelectModal';
 
 const tableService = new TableService();
 const productService = new ProductService();
@@ -48,15 +31,14 @@ const productService = new ProductService();
 export default {
     name: 'CreateOrder',
     components: {
-        Product
+        ProductSelectModal
     },
     data()
     {
         return {
             order: {},
-            isUpdateRoute: false,
             restaurantTables: [],
-            products: [],
+            products: []
         }
     },
     methods: {
@@ -70,18 +52,7 @@ export default {
                 element.counter = 0;
             });
         },
-        plusProductCounter(index) {
-            if(this.products[index].counter < 100) {
-                this.products[index].counter += 1;
-            }
-            document.getElementById("productCounter" + this.products[index].id).innerHTML = this.products[index].counter;
-        },
-        minusProductCounter(index) {
-            if(this.products[index].counter > 0) {
-                this.products[index].counter -= 1;
-            }
-            document.getElementById("productCounter" + this.products[index].id).innerHTML = this.products[index].counter;
-        },
+
     },
     mounted: function() {
         this.getRestaurantTables();
@@ -97,20 +68,5 @@ export default {
 
   .links{
     padding: 0 2em 2em 2em;
-  }
-
-  .btnIcon {
-    min-width: 1em;
-    max-width: 1em;
-    filter: invert(1);
-  }
-
-  .counterText {
-      color: white;
-  }
-
-  .vertical-center {
-      display: flex;
-      align-items: center;
   }
 </style>
