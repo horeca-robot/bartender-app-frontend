@@ -12,8 +12,8 @@
                             <option v-for="(restaurantTables, index) in restaurantTables" :key="index" :value="restaurantTables.id">{{ restaurantTables.tableNumber }}</option>
                         </select>
                     </div>
-                    <ProductSelectModal :products="products"/>
-                   <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                    <ProductSelectModal/>
+                    <button type="submit" class="btn btn-primary">Create order</button>
                 </div>
             </div>
         </div>
@@ -21,12 +21,10 @@
 </template>
 
 <script>
-import ProductService from '@/services/ProductService.js';
 import TableService from '@/services/TableService.js';
 import ProductSelectModal from '@/components/ProductSelectModal';
 
 const tableService = new TableService();
-const productService = new ProductService();
 
 export default {
     name: 'CreateOrder',
@@ -44,19 +42,10 @@ export default {
     methods: {
         async getRestaurantTables() {
             this.restaurantTables = await tableService.getAll();
-        },
-        async getInfo() {
-            this.products = await productService.getAll();
-
-            this.products.forEach(element => {
-                element.counter = 0;
-            });
-        },
-
+        }
     },
     mounted: function() {
         this.getRestaurantTables();
-        this.getInfo();
     }
 }
 </script>
