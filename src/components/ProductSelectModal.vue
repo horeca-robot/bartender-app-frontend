@@ -35,7 +35,7 @@ export default {
             this.products.forEach(element => {
                 element.count = 0;
             });
-        },
+        }
     },
     mounted() {
         this.getProducts();

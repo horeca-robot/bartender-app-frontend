@@ -7,13 +7,13 @@
                     <hr>
                     <label class="form-label">Table number</label>
                     <div class="form-group">
-                        <select v-model="order" class="form-select mb-3 w-25" aria-label="Default select example">
+                        <select v-model="order.restaurantTable" class="form-select mb-3 w-25" aria-label="Default select example">
                             <option disabled selected readyonly>Choose table</option>
                             <option v-for="(restaurantTables, index) in restaurantTables" :key="index" :value="restaurantTables.id">{{ restaurantTables.tableNumber }}</option>
                         </select>
                     </div>
-                    <ProductSelectModal/>
-                    <button type="submit" class="btn btn-primary">Create order</button>
+                    <ProductSelectModal ref="productModal"/>
+                    <button type="submit" @click="createOrder()" class="btn btn-primary">Create order</button>
                 </div>
             </div>
         </div>
@@ -42,6 +42,10 @@ export default {
     methods: {
         async getRestaurantTables() {
             this.restaurantTables = await tableService.getAll();
+        },
+        createOrder() {
+            this.order.products = this.$refs.productModal.products
+            console.log(this.order);
         }
     },
     mounted: function() {
