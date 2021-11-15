@@ -7,13 +7,13 @@
                     <hr>
                     <label class="form-label">Table number</label>
                     <div class="form-group">
-                        <select v-model="order.restaurantTable" class="form-select mb-3 w-25" aria-label="Default select example">
+                        <select v-model="order.table" class="form-select mb-3 w-25" aria-label="Default select example">
                             <option disabled selected readyonly>Choose table</option>
-                            <option v-for="(restaurantTables, index) in restaurantTables" :key="index" :value="restaurantTables.id">{{ restaurantTables.tableNumber }}</option>
+                            <option v-for="(restaurantTables, index) in restaurantTables" :key="index" :value="restaurantTables">{{ restaurantTables.tableNumber }}</option>
                         </select>
                     </div>
                     <ProductSelectModal ref="productModal"/>
-                    <button type="submit" @click="createOrder()" class="btn btn-primary">Create order</button>
+                    <button type="submit" @click="createOrder()" class="btn btn-primary mt-4">Create order</button>
                 </div>
             </div>
         </div>
@@ -22,9 +22,11 @@
 
 <script>
 import TableService from '@/services/TableService.js';
+import OrderService from '@/services/OrderService.js';
 import ProductSelectModal from '@/components/ProductSelectModal';
 
 const tableService = new TableService();
+const orderService = new OrderService();
 
 export default {
     name: 'CreateOrder',
@@ -43,9 +45,9 @@ export default {
         async getRestaurantTables() {
             this.restaurantTables = await tableService.getAll();
         },
-        createOrder() {
-            this.order.products = this.$refs.productModal.products
-            console.log(this.order);
+        async createOrder() {
+            this.order.products = this.$refs.productModal.products.filter(product => product.count > 0);
+            await orderService.create(this.order);
         }
     },
     mounted: function() {
