@@ -29,12 +29,21 @@ export default {
         }
     },
     methods: {
-        async getProducts() {
+        async getProducts(productsInOrder = null) {
             this.products = await productService.getAll();
 
             this.products.forEach(element => {
                 element.count = 0;
             });
+            if(productsInOrder !== null) {
+                productsInOrder.forEach(element => {
+                    this.products.forEach(elementChild => {
+                        if(element.product.id == elementChild.id) {
+
+                        }
+                    });
+                });
+            }
         }
     },
     mounted() {
