@@ -57,8 +57,10 @@
 
 <script>
 import OrderService from '@/services/OrderService.js';
+import ProductService from '@/services/ProductService.js';
 
 const orderService = new OrderService();
+const productService = new ProductService();
 
 export default {
     name: 'Orders',
@@ -82,6 +84,23 @@ export default {
 
             const orderId = selectBox.getAttribute('data-id');
             const order = this.getOrderFromOrdersByID(orderId);
+            var products = await productService.getAll();
+
+            products.forEach(element => {
+                element.count = 0;
+            });
+
+            if(order.productOrders !== undefined) {
+                order.productOrders.forEach(element => {
+                    products.forEach(elementChild => {
+                        if(element.product.id == elementChild.id) {
+                            elementChild.count++;
+                        }
+                    });
+                });
+            }
+
+            order.products = products.filter(product => product.count > 0);
 
             if(order == null)
                 return;

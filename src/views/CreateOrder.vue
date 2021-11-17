@@ -48,6 +48,7 @@ export default {
         async createOrder() {
             this.order.products = this.$refs.productModal.products.filter(product => product.count > 0);
             await orderService.create(this.order);
+                this.$router.push('/orders');
         }
     },
     mounted: function() {

@@ -12,8 +12,8 @@
                             <option v-for="(restaurantTables, index) in restaurantTables" :key="index" :value="restaurantTables">{{ restaurantTables.tableNumber }}</option>
                         </select>
                     </div>
-                    <ProductSelectModal ref="productModal" :productsInOrder="order.productOrders"/>
-                    <button type="submit" @click="createOrder()" class="btn btn-primary mt-4">Create order</button>
+                    <ProductSelectModal ref="productModal" :productsInOrder="order.productOrders" v-if="childDataLoaded"/>
+                    <button type="submit" @click="updateOrder()" class="btn btn-primary mt-4">Update order</button>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@ export default {
         return {
             order: {},
             restaurantTables: [],
-            products: []
+            products: [],
             childDataLoaded: false,
         }
     },
@@ -52,7 +52,9 @@ export default {
         },
         async updateOrder() {
             this.order.products = this.$refs.productModal.products.filter(product => product.count > 0);
+            console.log(this.order);
             await orderService.update(this.order);
+            this.$router.push('/orders');
         }
     },
     mounted: function() {

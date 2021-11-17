@@ -11,7 +11,7 @@
                                 <b>Subtotal:</b> {{ subTotalString }}<br>
                                 <b>Table Number:</b> {{order.table.tableNumber}}<br>
                                 <b>Paid?</b> <p class="d-inline-block" v-if="order.paid">Yes</p> <p v-else class="d-inline-block">No</p> <br>
-                                <b>Created At:</b> {{ order.createdAt }} <br>
+                                <b>Created At:</b> {{ getProperTime(order.createdAt) }} <br>
                                 <!-- <select class="form-select mb-3" aria-label="Default select example">
                                     <v-if></v-if>
                                     <option readonly disabled selected value="">Choose table number</option>
@@ -71,6 +71,17 @@ export default {
         },
         async getRestaurantTables() {
             this.restaurantTables = await tableService.getAll();
+        },
+        getProperTime(time) {
+            const date = new Date(time);
+
+            if(!(date instanceof Date))
+                return time;
+
+            const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
+            const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
+
+            return `${date.getDate()}-${date.getMonth()}-${date.getFullYear()} ${hours}:${minutes}`;
         }
     },
     mounted: function() {

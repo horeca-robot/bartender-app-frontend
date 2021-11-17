@@ -32,7 +32,6 @@ export default {
     methods: {
         async getProducts() {
             this.products = await productService.getAll();
-
             this.products.forEach(element => {
                 element.count = 0;
             });
