@@ -8,7 +8,7 @@
                         <div class="card-body">
                             <div class="card-text">
                                 <b>Order ID:</b> #{{ order.id }} <br>
-                                <b>Subtotal:</b> {{order.subTotal}}<br>
+                                <b>Subtotal:</b> {{ subTotalString }}<br>
                                 <b>Table Number:</b> {{order.table.tableNumber}}<br>
                                 <b>Paid?</b> <p class="d-inline-block" v-if="order.paid">Yes</p> <p v-else class="d-inline-block">No</p> <br>
                                 <b>Created At:</b> {{ order.createdAt }} <br>
@@ -60,12 +60,14 @@ export default {
             order: {},
             isUpdateRoute: true,
             restaurantTables: [],
+            subTotalString: "",
         }
     },
     methods: {
         async getInfo() {
             const id = this.$route.params.id;
             this.order = await orderService.getByID(id);
+            this.subTotalString = "€ " + this.order.subTotal.toFixed(2);
         },
         async getRestaurantTables() {
             this.restaurantTables = await tableService.getAll();
