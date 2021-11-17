@@ -29,8 +29,8 @@
                                             </th>
                                             <td>
                                                 <select @change="updateOrderStatus" class="form-select textTable" v-model="order.paid" :data-id="order.id">
-                                                    <option :key="index" :value="true">Yes</option>
-                                                    <option :key="index" :value="false">No</option>
+                                                    <option :key="'idYes' + index" :value="true">Yes</option>
+                                                    <option :key="'idNo' + index" :value="false">No</option>
                                                 </select>
                                             </td>
                                             <td>

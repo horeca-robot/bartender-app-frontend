@@ -5,7 +5,7 @@
 
         <!-- The modal -->
         <b-modal id="add-product-modal" size="xl" title="Add products">
-            <div class="row p-2" v-for="(product) in this.products" :key="product.id" :id="product.id" >
+            <div class="row p-2" v-for="(product) in this.$data.products" :key="product.id" :id="product.id" >
                 <ProductWithCounter :product="product"/>
             </div>
         </b-modal>
@@ -36,10 +36,9 @@ export default {
             this.products.forEach(element => {
                 element.count = 0;
             });
-            console.log(this.$props.productsInOrder);
 
-            if(this.productsInOrder !== null) {
-                this.productsInOrder.forEach(element => {
+            if(this.$props.productsInOrder !== undefined) {
+                this.$props.productsInOrder.forEach(element => {
                     this.products.forEach(elementChild => {
                         if(element.product.id == elementChild.id) {
                             elementChild.count++;

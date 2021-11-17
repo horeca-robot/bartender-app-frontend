@@ -39,11 +39,13 @@ export default {
             order: {},
             restaurantTables: [],
             products: []
+            childDataLoaded: false,
         }
     },
     methods: {
         async getOrder() {
             this.order = await orderService.getByID(this.$route.params.id);
+            this.childDataLoaded = true;
         },
         async getRestaurantTables() {
             this.restaurantTables = await tableService.getAll();
