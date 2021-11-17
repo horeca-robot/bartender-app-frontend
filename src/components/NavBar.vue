@@ -21,7 +21,7 @@ export default {
                     icon: '/assets/img/order.svg'
                 },
                 {
-                    path: '/orders/edit/products',
+                    path: '/products',
                     name: 'Products',
                     icon: '/assets/img/about.svg'
                 },
