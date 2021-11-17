@@ -23,30 +23,33 @@ export default {
     components: {
         ProductWithCounter
     },
+    props: ['productsInOrder'],
     data() {
         return {
             products: [],
         }
     },
     methods: {
-        async getProducts(productsInOrder = null) {
+        async getProducts() {
             this.products = await productService.getAll();
 
             this.products.forEach(element => {
                 element.count = 0;
             });
-            if(productsInOrder !== null) {
-                productsInOrder.forEach(element => {
+            console.log(this.$props.productsInOrder);
+
+            if(this.productsInOrder !== null) {
+                this.productsInOrder.forEach(element => {
                     this.products.forEach(elementChild => {
                         if(element.product.id == elementChild.id) {
-
+                            elementChild.count++;
                         }
                     });
                 });
             }
         }
     },
-    mounted() {
+    mounted: function() {
         this.getProducts();
     }
 }

@@ -12,7 +12,7 @@
                             <option v-for="(restaurantTables, index) in restaurantTables" :key="index" :value="restaurantTables">{{ restaurantTables.tableNumber }}</option>
                         </select>
                     </div>
-                    <ProductSelectModal ref="productModal"/>
+                    <ProductSelectModal ref="productModal" :productsInOrder="order.productOrders"/>
                     <button type="submit" @click="createOrder()" class="btn btn-primary mt-4">Create order</button>
                 </div>
             </div>
@@ -42,8 +42,8 @@ export default {
         }
     },
     methods: {
-        async getOrder(){
-            this.$data.order = await orderService.getByID(this.$route.params.id)
+        async getOrder() {
+            this.order = await orderService.getByID(this.$route.params.id);
         },
         async getRestaurantTables() {
             this.restaurantTables = await tableService.getAll();
