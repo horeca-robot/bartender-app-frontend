@@ -44,9 +44,11 @@
 import OrderProduct from '@/components/OrderProduct';
 import OrderService from '@/services/OrderService.js';
 import TableService from '@/services/TableService.js';
+import ProductService from '@/services/ProductService.js';
 
 const orderService = new OrderService();
 const tableService = new TableService();
+const productService = new ProductService();
 
 export default {
     name: 'OrderDetail',
@@ -88,9 +90,25 @@ export default {
         async getOrderStatusses() {
             this.orderProductStatusses = await orderService.getDeliveryStatusses();
         },
-        async updateOrderStatusses(order) {
-            this.orderProductStatusses = await orderService.update(order);
-            console.log(order);
+        async updateOrderStatusses() {
+            let products = await productService.getAll();
+
+            products.forEach(element => {
+                element.count = 0;
+            });
+
+            if(this.order.productOrders !== undefined) {
+                this.order.productOrders.forEach(element => {
+                    products.forEach(elementChild => {
+                        if(element.product.id == elementChild.id) {
+                            elementChild.count++;
+                        }
+                    });
+                });
+            }
+
+            this.order.products = products.filter(product => product.count > 0);
+            this.orderProductStatusses = await orderService.update(this.order);
         }
     },
     mounted: function() {
