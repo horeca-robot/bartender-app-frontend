@@ -8,6 +8,12 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ orderProduct.product.name }} - &euro;{{ orderProduct.product.price }}</h5>
                     <p class="card-text">{{ orderProduct.product.description }}</p>
+
+                     <select @change="FireUpdateEvent()" v-model="orderProduct.orderStatus" class="form-select mb-3 w-25" aria-label="Default select example">
+                        <option disabled selected readyonly>Choose product status</option>
+                        <option v-for="(orderStatus, index) in orderProductStatusses" :key="index" :value="orderStatus">{{ orderStatus }}</option>
+                     </select>
+
                     <p class="card-text"><b>Status:</b> {{ orderProduct.orderStatus }}</p>
                     <p class="card-text"><small class="text-muted">{{ orderProduct.product.remarks }}</small></p>
                 </div>
@@ -20,11 +26,14 @@
 <script>
 export default {
     name: 'OrderProduct',
-    props: ['orderProduct'],
+    props: ['orderProduct', 'orderProductStatusses'],
     methods: {
         FireRemoveEvent()
         {
             this.$emit('removedProduct');
+        },
+        FireUpdateEvent() {
+            this.$emit('updateProductstatus', this.orderProduct);
         }
     }
 }

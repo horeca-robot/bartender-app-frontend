@@ -28,7 +28,7 @@
                             <div class="order-courses mt-4">
                                 <h2 class="mb-3">Products:</h2>
                                 <div v-for="(productOrder, index) in order.productOrders" v-bind:key="index">
-                                    <order-product v-bind:key="index" :orderProduct="productOrder"/>
+                                    <order-product v-bind:key="index" :orderProduct="productOrder" v-on:updateProductstatus="updateOrderStatusses" :orderProductStatusses="orderProductStatusses"/>
                                 </div>
                             </div>
                         </div>
@@ -61,6 +61,7 @@ export default {
             isUpdateRoute: true,
             restaurantTables: [],
             subTotalString: "",
+            orderProductStatusses: [],
         }
     },
     methods: {
@@ -68,6 +69,7 @@ export default {
             const id = this.$route.params.id;
             this.order = await orderService.getByID(id);
             this.subTotalString = "€ " + this.order.subTotal.toFixed(2);
+            await this.getOrderStatusses();
         },
         async getRestaurantTables() {
             this.restaurantTables = await tableService.getAll();
@@ -82,6 +84,13 @@ export default {
             const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
 
             return `${date.getDate()}-${date.getMonth()}-${date.getFullYear()} ${hours}:${minutes}`;
+        },
+        async getOrderStatusses() {
+            this.orderProductStatusses = await orderService.getDeliveryStatusses();
+        },
+        async updateOrderStatusses(order) {
+            this.orderProductStatusses = await orderService.update(order);
+            console.log(order);
         }
     },
     mounted: function() {

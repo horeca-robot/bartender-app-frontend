@@ -28,7 +28,7 @@
                                                 <router-link class="textID" :to="'/orders/' + order.id">{{ order.table != null ? order.table.tableNumber : 'N/A' }}</router-link>
                                             </th>
                                             <td>
-                                                <select @change="updateOrderStatus" class="form-select textTable" v-model="order.paid" :data-id="order.id">
+                                                <select @change="updatePaymentStatus" class="form-select textTable" v-model="order.paid" :data-id="order.id">
                                                     <option :key="'idYes' + index" :value="true">Yes</option>
                                                     <option :key="'idNo' + index" :value="false">No</option>
                                                 </select>
@@ -68,15 +68,13 @@ export default {
     {
         return {
             orders: [],
-            orderStatusses: [],
         }
     },
     methods: {
         async getInfo() {
             this.orders = await orderService.getAll();
-            this.orderStatusses = await orderService.getDeliveryStatusses();
         },
-        async updateOrderStatus(e) {
+        async updatePaymentStatus(e) {
             const selectBox = e.target;
 
             if(!(selectBox instanceof Element) || !selectBox.hasAttribute('data-id'))
@@ -106,7 +104,7 @@ export default {
                 return;
 
             if(!await orderService.update(order)) {
-                alert('Could not update order, please try again later.');
+                alert('Could not update payment status, please try again later.');
             }
         },
         getOrderFromOrdersByID(orderId) {
