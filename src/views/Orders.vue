@@ -74,20 +74,22 @@ export default {
         },
         async updatePaymentStatus(e) {
             const selectBox = e.target;
-
             if(!(selectBox instanceof Element) || !selectBox.hasAttribute('data-id'))
                 return;
-
             const orderId = selectBox.getAttribute('data-id');
             const order = this.getOrderFromOrdersByID(orderId);
 
-            if(order == null)
-                return;
+            if (confirm("Are you sure you want to change the payment-status?")) {
+                if(order == null)
+                    return;
 
-            if(!await orderService.update(order)) {
-                alert('Could not update payment status, please try again later.');
+                if(!await orderService.update(order)) {
+                    alert('Could not update payment status, please try again later.');
+                }
             }
-
+            else {
+                order.paid = !order.paid;
+            }
         },
         getOrderFromOrdersByID(orderId) {
             for(const order of this.orders) {
