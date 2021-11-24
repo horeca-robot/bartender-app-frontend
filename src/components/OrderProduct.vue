@@ -28,12 +28,8 @@ export default {
     name: 'OrderProduct',
     props: ['orderProduct', 'orderProductStatusses'],
     methods: {
-        FireRemoveEvent()
-        {
-            this.$emit('removedProduct');
-        },
         FireUpdateEvent() {
-            this.$emit('updateProductstatus', this.orderProduct);
+            this.$parent.updateOrderStatusses();
         }
     }
 }
