@@ -23,7 +23,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(order, index) in orders" v-bind:key="index">
+                                        <tr v-for="(order, index) in orders.orders" v-bind:key="index">
                                             <th scope="row" class="textTable">
                                                 <router-link class="textID" :to="'/orders/' + order.id">{{ order.table != null ? order.table.tableNumber : 'N/A' }}</router-link>
                                             </th>
@@ -70,7 +70,7 @@ export default {
     },
     methods: {
         async getInfo() {
-            this.orders = await orderService.getAll();
+            this.orders = await orderService.getAll(0,4);
         },
         async updatePaymentStatus(e) {
             const selectBox = e.target;
