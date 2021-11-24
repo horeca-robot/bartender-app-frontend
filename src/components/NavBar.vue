@@ -26,7 +26,7 @@ export default {
                     icon: '/assets/img/about.svg'
                 },
                 {
-                    path: '/robot',
+                    path: '/robots',
                     name: 'Robots',
                     icon: '/assets/img/robot2.svg'
                 },
