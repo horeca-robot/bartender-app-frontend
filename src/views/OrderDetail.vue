@@ -9,26 +9,14 @@
                             <div class="card-text">
                                 <b>Order ID:</b> #{{ order.id }} <br>
                                 <b>Subtotal:</b> {{ subTotalString }}<br>
-                                <b>Table Number:</b> {{order.table.tableNumber}}<br>
+                                <b>Table Number:</b> {{ orderTableNumber }}<br>
                                 <b>Paid?</b> <p class="d-inline-block" v-if="order.paid">Yes</p> <p v-else class="d-inline-block">No</p> <br>
                                 <b>Created At:</b> {{ getProperTime(order.createdAt) }} <br>
-                                <!-- <select class="form-select mb-3" aria-label="Default select example">
-                                    <v-if></v-if>
-                                    <option readonly disabled selected value="">Choose table number</option>
-                                    <option v-for="(restaurantTable, index) in restaurantTables" :key="index" :value="restaurantTable.tableNumber">{{ restaurantTable.tableNumber }}</option>
-                                </select> -->
                             </div>
-                            <!--<div class="order-courses">
-                                <order-course
-                                v-for="(course, index) in order.courses" v-bind:key="index"
-
-                                :course="course"
-                                />
-                            </div> -->
                             <div class="order-courses mt-4">
                                 <h2 class="mb-3">Products:</h2>
                                 <div v-for="(productOrder, index) in order.productOrders" v-bind:key="index">
-                                    <order-product v-bind:key="index" :orderProduct="productOrder" v-on:updateProductstatus="updateOrderStatusses" :orderProductStatusses="orderProductStatusses"/>
+                                    <order-product v-if="childDataLoaded" v-bind:key="index" :orderProduct="productOrder" v-on:updateProductstatus="updateOrderStatusses" :orderProductStatusses="orderProductStatusses" ref="orderProduct"/>
                                 </div>
                             </div>
                         </div>
@@ -58,9 +46,10 @@ export default {
     {
         return {
             order: {},
-            restaurantTables: [],
             subTotalString: "",
             orderProductStatusses: [],
+            childDataLoaded: false,
+            orderTableNumber: {}
         }
     },
     methods: {
@@ -68,11 +57,13 @@ export default {
             const id = this.$route.params.id;
             this.order = await orderService.getByID(id);
             this.subTotalString = "€ " + this.order.subTotal.toFixed(2);
+            this.orderTableNumber = this.order.table.tableNumber;
+            this.childDataLoaded = true;
             await this.getOrderStatusses();
         },
 
         async getRestaurantTables() {
-            this.restaurantTables = await tableService.getAll();
+            await tableService.getAll();
         },
 
         getProperTime(time) {
@@ -92,7 +83,15 @@ export default {
         },
 
         async updateOrderStatusses() {
-            this.orderProductStatusses = await orderService.update(this.order);
+            for(let i = 0; i < this.order.productOrders.length; i++ ) {
+                let updatedOrderProduct = this.$refs.orderProduct[i].orderProduct;
+
+                if(this.order.productOrders.id == updatedOrderProduct.id) {
+                    this.order.productOrders[i].orderStatus = updatedOrderProduct.orderStatus
+                }
+            }
+
+            await orderService.update(this.order);
         }
     },
     mounted: function() {

@@ -87,6 +87,7 @@ export default {
             if(!await orderService.update(order)) {
                 alert('Could not update payment status, please try again later.');
             }
+
         },
         getOrderFromOrdersByID(orderId) {
             for(const order of this.orders) {
@@ -113,7 +114,7 @@ export default {
             const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
 
             return `${date.getDate()}-${date.getMonth()}-${date.getFullYear()} ${hours}:${minutes}`;
-        }
+        },
     },
     mounted: function() {
         this.getInfo();
