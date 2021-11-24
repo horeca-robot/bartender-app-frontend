@@ -8,7 +8,7 @@
                             <div class="d-flex justify-content-between">
                                 <h5 class="card-title text-center d-inline-block">All orders</h5>
                                 <div class="form-group d-inline-flex">
-                                    <button class="btn btn-primary ms-3 mb-3">New</button>
+                                    <router-link class="textID" :to="'/orders/create'"><button class="btn btn-primary ms-3 mb-3">New</button></router-link>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -25,18 +25,18 @@
                                     <tbody>
                                         <tr v-for="(order, index) in orders" v-bind:key="index">
                                             <th scope="row" class="textTable">
-                                                <router-link class="textID" :to="'/order/' + order.id">{{ order.table != null ? order.table.tableNumber : 'N/A' }}</router-link>
+                                                <router-link class="textID" :to="'/orders/' + order.id">{{ order.table != null ? order.table.tableNumber : 'N/A' }}</router-link>
                                             </th>
                                             <td>
-                                                <select @change="updateOrderStatus" class="form-select textTable" v-model="order.paid" :data-id="order.id">
-                                                    <option :key="index" :value="true">Yes</option>
-                                                    <option :key="index" :value="false">No</option>
+                                                <select @change="updatePaymentStatus" class="form-select textTable" v-model="order.paid" :data-id="order.id">
+                                                    <option :key="'idYes' + index" :value="true">Yes</option>
+                                                    <option :key="'idNo' + index" :value="false">No</option>
                                                 </select>
                                             </td>
                                             <td>
                                                 <img class="icon mt-1" src="/assets/img/delete.svg">
                                                 &nbsp;
-                                                <router-link class="textID" :to="'/order/' + order.id">
+                                                <router-link class="textID" :to="'/orders/update/' + order.id">
                                                     <img class="icon mt-1" src="/assets/img/edit.svg">
                                                 </router-link>
                                             </td>
@@ -66,28 +66,29 @@ export default {
     {
         return {
             orders: [],
-            orderStatusses: [],
         }
     },
     methods: {
         async getInfo() {
             this.orders = await orderService.getAll();
-            this.orderStatusses = await orderService.getDeliveryStatusses();
         },
-        async updateOrderStatus(e) {
+        async updatePaymentStatus(e) {
             const selectBox = e.target;
-
             if(!(selectBox instanceof Element) || !selectBox.hasAttribute('data-id'))
                 return;
-
             const orderId = selectBox.getAttribute('data-id');
             const order = this.getOrderFromOrdersByID(orderId);
 
-            if(order == null)
-                return;
+            if (confirm("Are you sure you want to change the payment-status?")) {
+                if(order == null)
+                    return;
 
-            if(!await orderService.update(order)) {
-                alert('Could not update order, please try again later.');
+                if(!await orderService.update(order)) {
+                    alert('Could not update payment status, please try again later.');
+                }
+            }
+            else {
+                order.paid = !order.paid;
             }
         },
         getOrderFromOrdersByID(orderId) {
@@ -115,7 +116,7 @@ export default {
             const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
 
             return `${date.getDate()}-${date.getMonth()}-${date.getFullYear()} ${hours}:${minutes}`;
-        }
+        },
     },
     mounted: function() {
         this.getInfo();
