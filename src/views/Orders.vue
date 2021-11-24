@@ -28,7 +28,7 @@
                                                 <router-link class="textID" :to="'/orders/' + order.id">{{ order.table != null ? order.table.tableNumber : 'N/A' }}</router-link>
                                             </th>
                                             <td>
-                                                <select @change="updateOrderStatus" class="form-select textTable" v-model="order.paid" :data-id="order.id">
+                                                <select @change="updatePaymentStatus" class="form-select textTable" v-model="order.paid" :data-id="order.id">
                                                     <option :key="'idYes' + index" :value="true">Yes</option>
                                                     <option :key="'idNo' + index" :value="false">No</option>
                                                 </select>
@@ -57,10 +57,8 @@
 
 <script>
 import OrderService from '@/services/OrderService.js';
-import ProductService from '@/services/ProductService.js';
 
 const orderService = new OrderService();
-const productService = new ProductService();
 
 export default {
     name: 'Orders',
@@ -68,45 +66,29 @@ export default {
     {
         return {
             orders: [],
-            orderStatusses: [],
         }
     },
     methods: {
         async getInfo() {
             this.orders = await orderService.getAll();
-            this.orderStatusses = await orderService.getDeliveryStatusses();
         },
-        async updateOrderStatus(e) {
+        async updatePaymentStatus(e) {
             const selectBox = e.target;
-
             if(!(selectBox instanceof Element) || !selectBox.hasAttribute('data-id'))
                 return;
-
             const orderId = selectBox.getAttribute('data-id');
             const order = this.getOrderFromOrdersByID(orderId);
-            var products = await productService.getAll();
 
-            products.forEach(element => {
-                element.count = 0;
-            });
+            if (confirm("Are you sure you want to change the payment-status?")) {
+                if(order == null)
+                    return;
 
-            if(order.productOrders !== undefined) {
-                order.productOrders.forEach(element => {
-                    products.forEach(elementChild => {
-                        if(element.product.id == elementChild.id) {
-                            elementChild.count++;
-                        }
-                    });
-                });
+                if(!await orderService.update(order)) {
+                    alert('Could not update payment status, please try again later.');
+                }
             }
-
-            order.products = products.filter(product => product.count > 0);
-
-            if(order == null)
-                return;
-
-            if(!await orderService.update(order)) {
-                alert('Could not update order, please try again later.');
+            else {
+                order.paid = !order.paid;
             }
         },
         getOrderFromOrdersByID(orderId) {
@@ -134,7 +116,7 @@ export default {
             const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
 
             return `${date.getDate()}-${date.getMonth()}-${date.getFullYear()} ${hours}:${minutes}`;
-        }
+        },
     },
     mounted: function() {
         this.getInfo();
