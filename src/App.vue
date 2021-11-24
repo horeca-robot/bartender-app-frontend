@@ -57,4 +57,17 @@ a {
   border-radius: 10px !important;
   box-shadow: 0 0 0.5rem 0.2rem #bbb !important;
 }
+
+.icon {
+    min-width: 2em;
+    max-width: 2em;
+    cursor: pointer;
+}
+
+.iconRobot {
+    min-width: 2em;
+    max-width: 2em;
+    margin-left: -4px;
+    cursor: pointer;
+}
 </style>

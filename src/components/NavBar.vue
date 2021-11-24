@@ -64,15 +64,4 @@ export default {
     background-color: #999;
     transition: 0.3s ease-in-out;
 }
-
-.icon {
-    min-width: 2em;
-    max-width: 2em;
-}
-
-.iconRobot {
-    min-width: 2em;
-    max-width: 2em;
-    margin-left: -4px;
-}
 </style>

@@ -22,8 +22,10 @@
                                         <tr v-for="robot in robots" :key="robot.id">
                                             <th scope="row" class="textTable">{{ robot.name }}</th>
                                             <th scope="row" class="textTable">{{ getRobotStatus(robot.status) }}</th>
-                                            <th scope="row" class="textTable">-</th>
-                                            <th scope="row" class="textTable">{{ robot.battery }}</th>
+                                            <th scope="row" class="textTable">
+                                                <img class="icon mt-1" src="/assets/img/stop.png">
+                                            </th>
+                                            <th scope="row" class="textTable">{{ robot.battery }}%</th>
                                         </tr>
                                     </tbody>
                                 </table>
