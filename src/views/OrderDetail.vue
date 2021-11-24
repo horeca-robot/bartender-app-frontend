@@ -44,11 +44,9 @@
 import OrderProduct from '@/components/OrderProduct';
 import OrderService from '@/services/OrderService.js';
 import TableService from '@/services/TableService.js';
-import ProductService from '@/services/ProductService.js';
 
 const orderService = new OrderService();
 const tableService = new TableService();
-const productService = new ProductService();
 
 export default {
     name: 'OrderDetail',
@@ -60,7 +58,6 @@ export default {
     {
         return {
             order: {},
-            isUpdateRoute: true,
             restaurantTables: [],
             subTotalString: "",
             orderProductStatusses: [],
@@ -73,9 +70,11 @@ export default {
             this.subTotalString = "€ " + this.order.subTotal.toFixed(2);
             await this.getOrderStatusses();
         },
+
         async getRestaurantTables() {
             this.restaurantTables = await tableService.getAll();
         },
+
         getProperTime(time) {
             const date = new Date(time);
 
@@ -87,35 +86,18 @@ export default {
 
             return `${date.getDate()}-${date.getMonth()}-${date.getFullYear()} ${hours}:${minutes}`;
         },
+
         async getOrderStatusses() {
             this.orderProductStatusses = await orderService.getDeliveryStatusses();
         },
+
         async updateOrderStatusses() {
-            let products = await productService.getAll();
-
-            products.forEach(element => {
-                element.count = 0;
-            });
-
-            if(this.order.productOrders !== undefined) {
-                this.order.productOrders.forEach(element => {
-                    products.forEach(elementChild => {
-                        if(element.product.id == elementChild.id) {
-                            elementChild.count++;
-                        }
-                    });
-                });
-            }
-
-            this.order.products = products.filter(product => product.count > 0);
             this.orderProductStatusses = await orderService.update(this.order);
         }
     },
     mounted: function() {
         this.getRestaurantTables();
-        if (this.isUpdateRoute) {
-            this.getInfo();
-        }
+        this.getInfo();
     }
 }
 </script>

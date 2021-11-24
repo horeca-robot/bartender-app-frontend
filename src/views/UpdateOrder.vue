@@ -51,8 +51,20 @@ export default {
             this.restaurantTables = await tableService.getAll();
         },
         async updateOrder() {
-            this.order.products = this.$refs.productModal.products.filter(product => product.count > 0);
-            console.log(this.order);
+            this.products = this.$refs.productModal.products.filter(product => product.count > 0);
+
+            this.order.productOrders = [];
+
+            for(const product of this.products) {
+                for (let i = 0; i < product.count; i++) {
+                    let productOrder = {
+                        product: product
+                    };
+
+                    this.order.productOrders.push(productOrder)
+                }
+            }
+
             await orderService.update(this.order);
             this.$router.push('/orders');
         }

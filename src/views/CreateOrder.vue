@@ -33,8 +33,7 @@ export default {
     components: {
         ProductSelectModal
     },
-    data()
-    {
+    data() {
         return {
             order: {},
             restaurantTables: [],
@@ -46,9 +45,22 @@ export default {
             this.restaurantTables = await tableService.getAll();
         },
         async createOrder() {
-            this.order.products = this.$refs.productModal.products.filter(product => product.count > 0);
+            this.products = this.$refs.productModal.products.filter(product => product.count > 0);
+
+            this.order.productOrders = [];
+
+            for(const product of this.products) {
+                for (let i = 0; i < product.count; i++) {
+                    let productOrder = {
+                        product: product
+                    };
+
+                    this.order.productOrders.push(productOrder)
+                }
+            }
+            console.log(this.order);
             await orderService.create(this.order);
-                this.$router.push('/orders');
+            this.$router.push('/orders');
         }
     },
     mounted: function() {
