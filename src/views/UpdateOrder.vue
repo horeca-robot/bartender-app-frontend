@@ -38,7 +38,6 @@ export default {
         return {
             order: {},
             restaurantTables: [],
-            products: [],
             childDataLoaded: false,
         }
     },
@@ -51,19 +50,48 @@ export default {
             this.restaurantTables = await tableService.getAll();
         },
         async updateOrder() {
-            this.products = this.$refs.productModal.products.filter(product => product.count > 0);
+            let existingOrderProducts = this.order.productOrders;
+            let newlySelectedProducts = this.$refs.productModal.products.filter(product => product.count > 0);
 
-            this.order.productOrders = [];
+            const orderProducts = [];
 
-            for(const product of this.products) {
-                for (let i = 0; i < product.count; i++) {
-                    let productOrder = {
-                        product: product
-                    };
+            // Update the product orders of the order
+            for(let product of newlySelectedProducts) {
+                if(product.count == undefined || !Number.isInteger(product.count))
+                    continue;
 
-                    this.order.productOrders.push(productOrder)
+                // This is probably redundand, so remove if you want...
+                if(product.count == 0)
+                    continue;
+
+                // Either select an existing order product, or create a new one 
+                while(product.count > 0) {
+                    let foundExistingOrderProduct = false;
+                    
+                    // First find an existing product order
+                    for(let i = existingOrderProducts.length - 1; i >= 0; i -= 1) {
+                        if(existingOrderProducts[i].product.id == product.id) {
+                            orderProducts.push(existingOrderProducts[i]);
+                            existingOrderProducts.splice(i, 1);
+                            foundExistingOrderProduct = true;
+                            product.count -= 1;
+                            break;
+                        }
+                    }
+
+                    // Create a new product order when there doesn't exist one
+                    if(!foundExistingOrderProduct) {
+                        orderProducts.push({
+                            orderStatus: 1, // Default status: OPEN_FOR_DELIVERY
+                            product: product
+                        });
+
+                        product.count -= 1;
+                    }
                 }
             }
+
+            this.order.productOrders = orderProducts;
 
             await orderService.update(this.order);
             this.$router.push('/orders');
