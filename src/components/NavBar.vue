@@ -30,6 +30,11 @@ export default {
                     name: 'Robots',
                     icon: '/assets/img/robot2.svg'
                 },
+                {
+                    path: '/map',
+                    name: 'Map',
+                    icon: '/assets/img/pin.png'
+                },
             ]
         }
     }
