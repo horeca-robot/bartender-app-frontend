@@ -4,3 +4,9 @@
 
 <script>
 </script>
+
+<style>
+  #map {
+    height: 180px;
+  }
+</style>
