@@ -9,12 +9,12 @@
                     <h5 class="card-title">{{ orderProduct.product.name }} - &euro;{{ orderProduct.product.price }}</h5>
                     <p class="card-text">{{ orderProduct.product.description }}</p>
 
-                     <select @change="FireUpdateEvent()" v-model="orderProduct.orderStatus" class="form-select mb-3 w-25" aria-label="Default select example">
+                    <b>Status:</b>
+                    <select @change="FireUpdateEvent()" v-model="orderProduct.orderStatus" class="form-select mb-3 w-25 mt-1" aria-label="Default select example">
                         <option disabled selected readyonly>Choose product status</option>
                         <option v-for="(orderStatus, index) in orderProductStatusses" :key="index" :value="orderStatus">{{ orderStatus }}</option>
-                     </select>
+                    </select>
 
-                    <p class="card-text"><b>Status:</b> {{ orderProduct.orderStatus }}</p>
                     <p class="card-text"><small class="text-muted">{{ orderProduct.product.remarks }}</small></p>
                 </div>
                 <!-- <div @click="FireRemoveEvent" class="product__remove"></div> -->
