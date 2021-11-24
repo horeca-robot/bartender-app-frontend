@@ -15,9 +15,9 @@ export default class
      *
      * @return Array
      */
-    async getAll()
+    async getAll(page = 0, size = 2)
     {
-        const [response, error] = await Request(AxiosClient.get(`/${this._entityType}`));
+        const [response, error] = await Request(AxiosClient.get(`/${this._entityType}?page=${page}&size=${size}`));
 
         if(error !== null) {
             return [];
