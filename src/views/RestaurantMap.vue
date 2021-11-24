@@ -1,96 +1,69 @@
-<!--<template>
-  <l-map style="height: 350px" :zoom="zoom" :center="center">
-  <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-    <l-circle
-          :lat-lng="circle.center"
-          :radius="circle.radius"
-          :color="circle.color"
-      />
-  </l-map>
-</template>
-
-<script>
-import {LMap, LTileLayer, LCircle} from 'vue2-leaflet';
-
-export default {
-  components: {
-    LMap,
-    LTileLayer,
-    LCircle
-  },
-  data () {
-    return {
-      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      attribution:
-        '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      zoom: 4,
-      center: [51.44000, 5.480],
-      circle: {
-        center: [51.44000, 5.480],
-        radius: 4500,
-        color: 'red'
-      }
-    };
-  }
-}
-</script> -->
 <template>
-
   <div >
-    <l-map
-      :zoom="zoom"
-      :center="center"
-      style="height: 500px; width: 100%"
-    >
+    <l-map :zoom="zoom" :center="center" style="height: 100%; width: 100%">
       <l-tile-layer
-        :url="url"
+        :url="LTileLayer"
         :attribution="attribution"
+        :options="options"
       />
-      <l-circle
+      <l-circle @click="showAlert"
           :lat-lng="circle.center"
           :radius="circle.radius"
           :color="circle.color"
       />
-      <l-control class="example-custom-control">
-        <p @click="showAlert">
-          Click me
-        </p>
-      </l-control>
     </l-map>
   </div>
 </template>
 
 <script>
-import { LMap, LTileLayer, LControl, LCircle } from "vue2-leaflet";
+import { LMap, LTileLayer, LCircle } from "vue2-leaflet";
+import RobotService from './../services/RobotsService';
+
+const robotService = new RobotService();
 
 export default {
   name: "Example",
   components: {
     LMap,
     LTileLayer,
-    LControl,
     LCircle
   },
   data() {
     return {
-      zoom: 3,
+      robots: [],
+      zoom: 2,
+      options: {
+        minZoom: 0,
+        maxZoom: 2,
+        continuousWorld: false,
+        noWrap: true
+      },
       center: [51.44000, 5.480],
-      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      attribution:
-        '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      LTileLayer: ('maps/custom_map/{z}/{x}/{y}.png'),
       circle: {
-        center: [51.44000, 5.480],
-        radius: 4500,
-        color: 'red'
+        center: [51.44000, -50.480],
+        radius: 400000,
+        color: 'red',
       }
     };
   },
   methods: {
     showAlert() {
-      alert("Click!");
-    }
+      alert("Robot id = " + this.$data.robots[0].id + "\n" +
+        "Robot name = " + this.$data.robots[0].name + "\n" +
+        "Robot battery = " + this.$data.robots[0].battery + "%"
+      );
+    },
+
+    async getAllRobots() {
+        this.$data.robots = await robotService.getAll();
+    },
+  },
+
+  mounted: function() {
+      this.getAllRobots();
   }
-};
+}
 </script>
 
 <style>
@@ -100,5 +73,4 @@ export default {
   border: 1px solid #aaa;
   border-radius: 0.1em;
 }
-
 </style>
