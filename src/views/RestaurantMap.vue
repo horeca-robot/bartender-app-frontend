@@ -1,6 +1,13 @@
 <template>
   <div >
     <l-map :zoom="zoom" :center="center" style="height: 100%; width: 100%">
+        <div class="container">
+            <div class="row h-100 justify-content-center">
+                <div class="col-auto col-md-12 col-sm-12 my-3">
+                    <h1 class="card-title text-center">Restaurant map</h1>
+                </div>
+            </div>
+        </div>
       <l-tile-layer
         :url="LTileLayer"
         :attribution="attribution"
@@ -69,10 +76,10 @@ export default {
 </script>
 
 <style>
-.example-custom-control {
-  background: #fff;
-  padding: 0 0.5em;
-  border: 1px solid #aaa;
-  border-radius: 0.1em;
-}
+  .example-custom-control {
+    background: #fff;
+    padding: 0 0.5em;
+    border: 1px solid #aaa;
+    border-radius: 0.1em;
+  }
 </style>
