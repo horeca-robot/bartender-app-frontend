@@ -32,6 +32,8 @@ export default {
     return {
       robots: [],
       zoom: 2,
+       attribution:
+        '',
       options: {
         minZoom: 0,
         maxZoom: 2,
