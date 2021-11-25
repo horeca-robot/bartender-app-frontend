@@ -81,6 +81,7 @@ export default {
             const selectBox = e.target;
             if(!(selectBox instanceof Element) || !selectBox.hasAttribute('data-id'))
                 return;
+
             const orderId = selectBox.getAttribute('data-id');
             const order = this.getOrderFromOrdersByID(orderId);
 
@@ -97,7 +98,7 @@ export default {
             }
         },
         getOrderFromOrdersByID(orderId) {
-            for(const order of this.orders) {
+            for(const order of this.orders.orders) {
                 if(order.id == orderId)
                     return order;
             }
