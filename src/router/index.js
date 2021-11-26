@@ -4,6 +4,8 @@ import OrderDetail from '../views/OrderDetail.vue'
 import CreateOrder from '../views/CreateOrder.vue'
 import UpdateOrder from '../views/UpdateOrder.vue'
 import ProductOverview from '../views/ProductOverview.vue'
+import Robots from '../views/Robots.vue';
+import RestaurantMap from '../views/RestaurantMap.vue'
 
 Vue.use(VueRouter)
 
@@ -32,6 +34,16 @@ const routes = [
     path: '/products',
     name: 'ProductOverview',
     component: ProductOverview
+  },
+  {
+    path: '/map',
+    name: 'RestaurantMap',
+    component: RestaurantMap
+  },
+  {
+      path: '/robots',
+      name: 'Robots',
+      component: Robots
   },
   {
     path: '*',

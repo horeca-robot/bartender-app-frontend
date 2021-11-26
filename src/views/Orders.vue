@@ -23,7 +23,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(order, index) in orders" v-bind:key="index">
+                                        <tr v-for="(order, index) in orders.orders" v-bind:key="index">
                                             <th scope="row" class="textTable">
                                                 <router-link class="textID" :to="'/orders/' + order.id">{{ order.table != null ? order.table.tableNumber : 'N/A' }}</router-link>
                                             </th>
@@ -48,6 +48,11 @@
                                 </table>
                             </div>
                         </div>
+                        <div class="card-footer center">
+                            <b-button variant="outline-primary" class="m-1" @click="getInfo(orders.current - 1)" :disabled="orders.current <= 0">Previous Page</b-button>
+                                <b class="mt-2"> Page {{ orders.current + 1 }} of {{ orders.total }} </b>
+                            <b-button variant="outline-primary" class="m-1" @click="getInfo(orders.current + 1)" :disabled="orders.current + 1 >= orders.total">Next Page</b-button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -69,13 +74,14 @@ export default {
         }
     },
     methods: {
-        async getInfo() {
-            this.orders = await orderService.getAll();
+        async getInfo(page = 0, size = 5) {
+            this.orders = await orderService.getAll(page, size);
         },
         async updatePaymentStatus(e) {
             const selectBox = e.target;
             if(!(selectBox instanceof Element) || !selectBox.hasAttribute('data-id'))
                 return;
+
             const orderId = selectBox.getAttribute('data-id');
             const order = this.getOrderFromOrdersByID(orderId);
 
@@ -92,7 +98,7 @@ export default {
             }
         },
         getOrderFromOrdersByID(orderId) {
-            for(const order of this.orders) {
+            for(const order of this.orders.orders) {
                 if(order.id == orderId)
                     return order;
             }
@@ -163,5 +169,10 @@ export default {
 
     .textID:hover {
         opacity: 0.5;
+    }
+
+    .center {
+        display: flex !important;
+        justify-content: center;
     }
 </style>

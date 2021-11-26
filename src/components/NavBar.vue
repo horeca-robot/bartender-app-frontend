@@ -26,9 +26,14 @@ export default {
                     icon: '/assets/img/about.svg'
                 },
                 {
-                    path: '/robot',
+                    path: '/robots',
                     name: 'Robots',
                     icon: '/assets/img/robot2.svg'
+                },
+                {
+                    path: '/map',
+                    name: 'Map',
+                    icon: '/assets/img/pin.png'
                 },
             ]
         }
@@ -63,16 +68,5 @@ export default {
     border-radius: 10px;
     background-color: #999;
     transition: 0.3s ease-in-out;
-}
-
-.icon {
-    min-width: 2em;
-    max-width: 2em;
-}
-
-.iconRobot {
-    min-width: 2em;
-    max-width: 2em;
-    margin-left: -4px;
 }
 </style>
