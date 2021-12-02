@@ -1,0 +1,10 @@
+version: "3.4"
+
+services:
+  bartender-frontend:
+    container_name: bartender-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:80"
