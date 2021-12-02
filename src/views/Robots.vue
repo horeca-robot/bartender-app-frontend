@@ -23,7 +23,7 @@
                                             <th scope="row" class="textTable">{{ robot.name }}</th>
                                             <th scope="row" class="textTable">{{ getRobotStatus(robot.status) }}</th>
                                             <th scope="row" class="textTable">
-                                                <img class="icon mt-1" src="/assets/img/stop.png">
+                                                <img class="icon mt-1" @click="emergencyStop(robot.id)" src="/assets/img/stop.png">
                                             </th>
                                             <th scope="row" class="textTable">{{ robot.battery }}%</th>
                                         </tr>
@@ -87,6 +87,16 @@ export default {
         async getAllRobots()
         {
             this.$data.robots = await robotService.getAll();
+        },
+        async emergencyStop(id)
+        {
+            const response = await robotService.stop(id);
+            if(response == true) {
+                alert("Robot with id " + id + " stopped.");
+            }
+            else {
+                alert("failed to stop robot with id " + id + "!");
+            }
         }
     },
     mounted()
