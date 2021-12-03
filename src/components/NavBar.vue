@@ -35,6 +35,11 @@ export default {
                     name: 'Map',
                     icon: '/assets/img/pin.png'
                 },
+                {
+                    path: '/notifications',
+                    name: 'Notifications',
+                    icon: '/assets/img/help.png'
+                },
             ]
         }
     }
