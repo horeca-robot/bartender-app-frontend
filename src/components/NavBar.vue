@@ -35,6 +35,11 @@ export default {
                     name: 'Map',
                     icon: '/assets/img/pin.png'
                 },
+                {
+                    path: '/employeeSelection',
+                    name: 'Login',
+                    icon: '/assets/img/user.png'
+                },
             ]
         }
     }

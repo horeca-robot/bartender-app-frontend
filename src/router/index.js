@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import OrderDetail from '../views/OrderDetail.vue'
-import CreateOrder from '../views/CreateOrder.vue'
-import UpdateOrder from '../views/UpdateOrder.vue'
-import ProductOverview from '../views/ProductOverview.vue'
-import Robots from '../views/Robots.vue';
-import RestaurantMap from '../views/RestaurantMap.vue'
+import OrderDetail from '../views/Orders/OrderDetail.vue'
+import CreateOrder from '../views/Orders/CreateOrder.vue'
+import UpdateOrder from '../views/Orders/UpdateOrder.vue'
+import ProductOverview from '../views/Products/ProductOverview.vue'
+import Robots from '../views/Robots/Robots.vue';
+import RestaurantMap from '../views/RestaurantMaps/RestaurantMap.vue'
+import EmployeeSelection from '../views/Auth/EmployeeSelection.vue'
+import Login from '../views/Auth/Login.vue'
 
 Vue.use(VueRouter)
 
@@ -13,7 +15,7 @@ const routes = [
   {
     path: '/orders',
     name: 'Orders',
-    component: () => import(/* webpackChunkName: "orders" */'@/views/Orders.vue')
+    component: () => import(/* webpackChunkName: "orders" */'@/views/Orders/Orders.vue')
   },
   {
     path: '/orders/create',
@@ -44,6 +46,16 @@ const routes = [
       path: '/robots',
       name: 'Robots',
       component: Robots
+  },
+  {
+    path: '/employeeSelection',
+    name: 'employeeSelection',
+    component: EmployeeSelection
+  },
+  {
+    path: '/login/:id',
+    name: 'Login',
+    component: Login
   },
   {
     path: '*',
