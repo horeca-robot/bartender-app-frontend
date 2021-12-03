@@ -2,11 +2,18 @@
     <main>
         <div class="container">
             <div class="row h-100">
-                <div class="col-auto col-lg-12 col-md-12 col-sm-12 my-3">
+                <div class="col col-md-12 my-3">
                     <h1 class="display-1 center">Employee selection</h1>
                     <hr>
-                    <div class="center">
-                        <router-link v-for="(employee, index) in employees.employees" v-bind:key="index" class="form-control employeeBox mb-3" :to="'/login/' + employee.id">{{ employee.username }}</router-link>
+
+                    <div class="w-50 mx-auto mb-3">
+                        <label for="search" class="form-label">Search</label>
+                        <input type="text" class="form-control" placeholder="Search...">
+                        <hr>
+                    </div>
+
+                    <div v-for="(employee, index) in employees.employees" v-bind:key="index" class="center">
+                        <router-link class="form-control w-50 mb-3" :to="'/login/' + employee.id">{{ employee.username }}</router-link> <br>
                     </div>
                 </div>
             </div>
@@ -43,9 +50,5 @@ export default {
     .center {
         display: flex !important;
         justify-content: center;
-    }
-
-    .employeeBox {
-        width: 50% !important;
     }
 </style>
