@@ -78,4 +78,10 @@ export default class
 
         return false;
      }
+
+     async stop(id)
+     {
+        console.log(id);
+        return true;
+     }
 }
