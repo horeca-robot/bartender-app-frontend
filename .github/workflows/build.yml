@@ -12,6 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Create properties file
+        run: |
+          rm .env
+          touch .env
+          echo "VUE_APP_BACKEND_URL=${{ secrets.API_HOST }}" >> .env
+          echo "VUE_APP_API_BASE_URL=${{ secrets.API_VERSION }}" >> .env
+
       - name: Setup Docker
         run: docker compose up --build -d
 
