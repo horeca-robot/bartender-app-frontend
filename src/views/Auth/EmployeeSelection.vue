@@ -13,7 +13,7 @@
                     </div>
 
                     <div v-for="(employee, index) in employees.employees" v-bind:key="index" class="center">
-                        <router-link class="form-control w-50 mb-3" :to="'/login/' + employee.id">{{ employee.username }}</router-link> <br>
+                        <router-link class="form-control w-50 mb-3 with-arrow with-arrow--right" :to="'/login/' + employee.id">{{ employee.username }}</router-link> <br>
                     </div>
                 </div>
             </div>
