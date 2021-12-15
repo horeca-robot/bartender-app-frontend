@@ -39,7 +39,15 @@ export default {
         async LoginEmployee(employeeID, employee) {
             const token =  await authService.LogIn(employeeID, employee);
             localStorage.setItem('authToken', token);
-            console.log(token);
+
+            if(await authService.verifyJWT(token)) {
+                console.log('Token is valid :D');
+                const refreshedToken = await authService.refreshJWT(token);
+                console.log(refreshedToken);
+            } else {
+                localStorage.clear('authToken');
+                console.log('Token is invalid :D');
+            }
         }
     },
     mounted: function() {
