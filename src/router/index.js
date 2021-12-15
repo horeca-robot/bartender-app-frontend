@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import AuthService from '../services/AuthService'
+
+const authService = new AuthService();
 
 Vue.use(VueRouter)
 
@@ -41,7 +44,7 @@ const routes = [
     },
     {
         path: '/employeeSelection',
-        name: 'employeeSelection',
+        name: 'EmployeeSelection',
         component: () => import(/* webpackChunkName: "auth" */'@/views/Auth/EmployeeSelection.vue')
     },
     {
@@ -60,5 +63,24 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+router.beforeEach((to, from, next) => {
+    const token = authService.getLocalJWT();
+    const authRoutes = ['Login', 'EmployeeSelection'];
+
+    if(authRoutes.includes(to.name)) {
+        if(token !== null && authService.verifyJWT(token)) {
+            next('/orders');
+        } else {
+            next();
+        }
+    }
+
+    if(token === null && !authRoutes.includes(to.name)) {
+        next('/employeeSelection');
+    }
+
+    next();
+});
 
 export default router

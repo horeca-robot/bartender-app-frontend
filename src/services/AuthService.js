@@ -39,6 +39,16 @@ export default class extends BaseService
         super('employee');
     }
 
+    getLocalJWT()
+    {
+        const token = String(window.localStorage.getItem('authToken'));
+
+        if(token.length == 0)
+            return null;
+
+        return token;
+    }
+
     /**
      * Log employee in
      *

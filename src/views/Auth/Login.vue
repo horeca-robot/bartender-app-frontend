@@ -53,9 +53,8 @@ export default {
                 return;
             }
 
-            localStorage.setItem('authToken', token);
-
             if(await authService.verifyJWT(token)) {
+                localStorage.setItem('authToken', token);
                 this.$router.push('/orders');
             } else {
                 localStorage.clear('authToken');
