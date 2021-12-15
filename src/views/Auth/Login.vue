@@ -7,9 +7,10 @@
                     <hr>
                     <div class="w-50 mx-auto">
                         <div class="my-3">
+                            <div v-if="enteredPinCodeIsCorrect.length > 0" class="alert alert-danger">{{ enteredPinCodeIsCorrect }}</div>
                             <label for="pincode" class="form-label">Pincode</label>
                             <input type="password" v-model="employee.pincode" class="form-control" placeholder="Your pin...">
-                            <button type="submit" v-on:click="LoginEmployee(employee.id, employee)" class="btn btn-primary mt-2">Log in</button>
+                            <button type="submit" v-on:click="loginEmployee(employee.id, employee)" class="btn btn-primary mt-2">Log in</button>
                         </div>
                     </div>
                 </div>
@@ -28,7 +29,8 @@ export default {
 
     data() {
         return {
-            employee: {}
+            employee: {},
+            enteredPinCodeIsCorrect: ''
         }
     },
     methods: {
@@ -36,19 +38,38 @@ export default {
             const id = this.$route.params.id;
             this.employee = await authService.getByID(id);
         },
-        async LoginEmployee(employeeID, employee) {
+        async loginEmployee(employeeID, employee) {
+            this.resetPasswordError();
+
+            if(employee.pincode.length !== 4) {
+                this.setPasswordError('The pincode must consist out of 4 digits.')
+                return;
+            }
+
             const token =  await authService.LogIn(employeeID, employee);
+
+            if(token === null) {
+                this.setPasswordError('Your pincode is not correct');
+                return;
+            }
+
             localStorage.setItem('authToken', token);
 
             if(await authService.verifyJWT(token)) {
-                console.log('Token is valid :D');
-                const refreshedToken = await authService.refreshJWT(token);
-                console.log(refreshedToken);
+                this.$router.push('/orders');
             } else {
                 localStorage.clear('authToken');
-                console.log('Token is invalid :D');
+                this.setPasswordError('Your pincode is not correct');
             }
-        }
+        },
+        setPasswordError(error)
+        {
+            this.$data.enteredPinCodeIsCorrect = error;
+        },
+        resetPasswordError()
+        {
+            this.$data.enteredPinCodeIsCorrect = '';
+        },
     },
     mounted: function() {
         this.getEmployee();

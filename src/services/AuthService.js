@@ -48,8 +48,8 @@ export default class extends BaseService
     {
         const [response, error] = await Request(AxiosClient.post(`/${this._entityType}/${id}/login`, employee));
 
-        if(error !== null) {
-            return [];
+        if(error !== null || (response !== null && response.status !== 200)) {
+            return null;
         }
 
         return response.data;
