@@ -6,5 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - VUE_APP_BACKEND_URL="https://horecarobot-frontend.azurewebsites.net/"
     ports:
       - "8081:80"

@@ -2,9 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import AuthService from '../services/AuthService'
 
-const authService = new AuthService();
-
 Vue.use(VueRouter)
+
+const authService = new AuthService();
 
 const routes = [
     {
@@ -51,6 +51,11 @@ const routes = [
         path: '/login/:id',
         name: 'Login',
         component: () => import(/* webpackChunkName: "auth" */'@/views/Auth/Login.vue')
+    },
+    {
+      path: '/notifications',
+      name: 'Notifications',
+      component: () => import(/* webpackChunkName: "notifications" */'@/views/Notifications.vue')
     },
     {
         path: '*',
