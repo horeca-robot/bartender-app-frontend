@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - '*'
+      - 'main'
 
 jobs:
   Front_end:
@@ -35,3 +35,15 @@ jobs:
         run: |
           docker build -t iqfx/horeca-frontend:latest .
           docker push iqfx/horeca-frontend:latest
+
+      - name: Pull Dockerhub repositories and setup docker containers
+          uses: appleboy/ssh-action@master
+          with:
+            host: ${{ secrets.SSH_HOST }}
+            username: ${{ secrets.SSH_USERNAME }}
+            password: ${{ secrets.SSH_PASSWORD }}
+            port: ${{ secrets.SSH_PORT }}
+            script: |
+              cd app
+              docker pull iqfx/horeca-frontend:latest
+              docker-compose up -d
