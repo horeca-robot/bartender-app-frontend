@@ -36,6 +36,11 @@ export default {
                     icon: '/assets/img/pin.png'
                 },
                 {
+                    path: '/employeeSelection',
+                    name: 'Login',
+                    icon: '/assets/img/user.png'
+                },
+                {
                     path: '/notifications',
                     name: 'Notifications',
                     icon: '/assets/img/help.png'

@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import RobotService from './../services/RobotsService';
+import RobotService from '@/services/RobotsService';
 
 const robotService = new RobotService();
 

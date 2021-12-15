@@ -24,7 +24,7 @@
 
 <script>
 import { LMap, LTileLayer, LCircle } from "vue2-leaflet";
-import RobotService from './../services/RobotsService';
+import RobotService from '@/services/RobotsService';
 
 const robotService = new RobotService();
 
