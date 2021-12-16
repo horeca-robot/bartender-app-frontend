@@ -1,11 +1,18 @@
-export default class
+import BaseService from "./BaseService";
+
+export default class extends BaseService
 {
+    constructor()
+    {
+        super('robot');
+    }
+
     /**
      * Retrieves all entities.
      *
      * @return Array
      */
-    async getAll()
+    async getAllMock()
     {
         return [
             {
@@ -28,7 +35,7 @@ export default class
      *
      * @return null, Object
      */
-    async getByID(id)
+    async getByIDMock(id)
     {
         const robots = this.getAll();
 
@@ -45,7 +52,7 @@ export default class
      *
      * @return true, false
      */
-     async create(entity)
+     async createMock(entity)
      {
          entity;
          return true;
@@ -56,7 +63,7 @@ export default class
      *
      * @return true, false
      */
-    async update(entity)
+    async updateMock(entity)
     {
         entity;
         return true;
@@ -66,22 +73,39 @@ export default class
      * Deletes an entity by ID.
      *
      * @return true, false
-     */
-     async delete(entityId)
-     {
-        const robots = this.getAll();
+    */
+    async deleteMock(entityId)
+    {
+    const robots = this.getAll();
 
-        for(const robot of robots) {
-            if(robot.id == entityId)
-                return true;
+    for(const robot of robots) {
+        if(robot.id == entityId)
+            return true;
+    }
+
+    return false;
+    }
+
+    async stop(id)
+    {
+    console.log(id);
+    return true;
+    }
+
+    async sendToTable(robotId, tableNumber)
+    {
+        console.log("Sending robot " + robotId + " to table " + tableNumber);
+    }
+
+    async getRobotFromOrder(orderId)
+    {
+        console.log("getting robot from order: " + orderId);
+        return {
+            id: 1,
+            name: 'Robot 1',
+            status: 0,
+            battery: 68
         }
+    }
 
-        return false;
-     }
-
-     async stop(id)
-     {
-        console.log(id);
-        return true;
-     }
 }

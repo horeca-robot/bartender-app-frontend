@@ -57,7 +57,7 @@ export default {
     max-width: 40vw;
     height: 100vh;
     padding: 2em;
-    text-align: center;
+    text-align: left;
     background-color: #fff;
     box-shadow: 0 0 1rem 0.2rem #999 !important;
     border-bottom-right-radius: 5px;

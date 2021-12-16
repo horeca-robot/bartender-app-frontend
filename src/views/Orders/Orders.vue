@@ -39,6 +39,7 @@
                                                 <router-link class="textID" :to="'/orders/update/' + order.id">
                                                     <img class="icon mt-1" src="/assets/img/edit.svg">
                                                 </router-link>
+                                                <img @click="sendToTable(order.id, order.table.tableNumber)"  class="icon mt-1" src="/assets/img/serve.png">
                                             </td>
                                             <td v-if="checkIfOrderContainsAlcohol(order)" class="textTable trueAlcohol">Contains alcohol</td>
                                             <td v-else class="textTable falseAlcohol">Doesn't contain alcohol</td>
@@ -62,8 +63,10 @@
 
 <script>
 import OrderService from '@/services/OrderService.js';
+import RobotService from '@/services/RobotService.js';
 
 const orderService = new OrderService();
+const robotService = new RobotService();
 
 export default {
     name: 'Orders',
@@ -122,6 +125,10 @@ export default {
             const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
 
             return `${date.getDate()}-${date.getMonth()}-${date.getFullYear()} ${hours}:${minutes}`;
+        },
+        async sendToTable(orderId, tableNumber) {
+            const robot = await robotService.getRobotFromOrder(orderId);
+            await robotService.sendToTable(robot.id, tableNumber);
         },
     },
     mounted: function() {
