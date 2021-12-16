@@ -1,18 +1,11 @@
-import BaseService from "./BaseService";
-
-export default class extends BaseService
+export default
 {
-    constructor()
-    {
-        super('robot');
-    }
-
     /**
      * Retrieves all entities.
      *
      * @return Array
      */
-    async getAllMock()
+    async getAll()
     {
         return [
             {
@@ -28,14 +21,14 @@ export default class extends BaseService
                 battery: 22
             }
         ];
-    }
+    },
 
     /**
      * Retrieves a specific entity by ID
      *
      * @return null, Object
      */
-    async getByIDMock(id)
+    async getByID(id)
     {
         const robots = this.getAll();
 
@@ -45,57 +38,57 @@ export default class extends BaseService
         }
 
         return null;
-    }
+    },
 
     /**
      * Creates a new entity.
      *
      * @return true, false
      */
-     async createMock(entity)
+     async create(entity)
      {
          entity;
          return true;
-     }
+     },
 
     /**
      * Updates a specific entity by ID
      *
      * @return true, false
      */
-    async updateMock(entity)
+    async update(entity)
     {
         entity;
         return true;
-    }
+    },
 
     /**
      * Deletes an entity by ID.
      *
      * @return true, false
     */
-    async deleteMock(entityId)
+    async delete(entityId)
     {
-    const robots = this.getAll();
+        const robots = this.getAll();
 
-    for(const robot of robots) {
-        if(robot.id == entityId)
-            return true;
-    }
+        for(const robot of robots) {
+            if(robot.id == entityId)
+                return true;
+        }
 
-    return false;
-    }
+        return false;
+    },
 
     async stop(id)
     {
     console.log(id);
     return true;
-    }
+    },
 
     async sendToTable(robotId, tableNumber)
     {
         console.log("Sending robot " + robotId + " to table " + tableNumber);
-    }
+    },
 
     async getRobotFromOrder(orderId)
     {

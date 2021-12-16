@@ -66,7 +66,6 @@ import OrderService from '@/services/OrderService.js';
 import RobotService from '@/services/RobotService.js';
 
 const orderService = new OrderService();
-const robotService = new RobotService();
 
 export default {
     name: 'Orders',
@@ -127,8 +126,8 @@ export default {
             return `${date.getDate()}-${date.getMonth()}-${date.getFullYear()} ${hours}:${minutes}`;
         },
         async sendToTable(orderId, tableNumber) {
-            const robot = await robotService.getRobotFromOrder(orderId);
-            await robotService.sendToTable(robot.id, tableNumber);
+            const robot = await RobotService.getRobotFromOrder(orderId);
+            await RobotService.sendToTable(robot.id, tableNumber);
         },
     },
     mounted: function() {
