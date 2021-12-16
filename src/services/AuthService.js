@@ -41,12 +41,18 @@ export default class extends BaseService
 
     getLocalJWT()
     {
-        const token = String(window.localStorage.getItem('authToken'));
+        const token = window.localStorage.getItem('authToken');
+
+        if(token == null)
+            return null;
+
+        if(token == undefined)
+            return null;
 
         if(token.length == 0)
             return null;
 
-        return token;
+        return String(token);
     }
 
     /**
