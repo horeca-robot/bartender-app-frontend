@@ -39,9 +39,7 @@
 </template>
 
 <script>
-import RobotService from './../services/RobotsService';
-
-const robotService = new RobotService();
+import RobotService from '@/services/RobotService';
 
 export default {
     name: 'Robots',
@@ -86,11 +84,11 @@ export default {
         },
         async getAllRobots()
         {
-            this.$data.robots = await robotService.getAll();
+            this.$data.robots = await RobotService.getAll();
         },
         async emergencyStop(id)
         {
-            const response = await robotService.stop(id);
+            const response = await RobotService.stop(id);
             if(response == true) {
                 alert("Robot with id " + id + " stopped.");
             }

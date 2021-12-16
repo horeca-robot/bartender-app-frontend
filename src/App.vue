@@ -70,4 +70,24 @@ a {
     margin-left: -4px;
     cursor: pointer;
 }
+
+.with-arrow{
+    position: relative;
+}
+
+.with-arrow::after{
+    content: '';
+    width: 0.85em;
+    height: 0.85em;
+    top: 50%;
+    position: absolute;
+    border-top: solid 0.15em #000;
+    border-right: solid 0.15em #000;
+    transform: translateY(-50%);
+}
+
+.with-arrow--right::after{
+    right: 1em;
+    transform: translateY(-50%) rotate(45deg);
+}
 </style>

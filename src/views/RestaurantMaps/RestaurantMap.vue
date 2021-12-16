@@ -24,9 +24,7 @@
 
 <script>
 import { LMap, LTileLayer, LCircle } from "vue2-leaflet";
-import RobotService from './../services/RobotsService';
-
-const robotService = new RobotService();
+import RobotService from '@/services/RobotService';
 
 export default {
   name: "Example",
@@ -65,7 +63,7 @@ export default {
     },
 
     async getAllRobots() {
-        this.$data.robots = await robotService.getAll();
+        this.$data.robots = await RobotService.getAll();
     },
   },
 

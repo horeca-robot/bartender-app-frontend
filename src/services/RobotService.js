@@ -1,4 +1,4 @@
-export default class
+export default
 {
     /**
      * Retrieves all entities.
@@ -21,7 +21,7 @@ export default class
                 battery: 22
             }
         ];
-    }
+    },
 
     /**
      * Retrieves a specific entity by ID
@@ -38,7 +38,7 @@ export default class
         }
 
         return null;
-    }
+    },
 
     /**
      * Creates a new entity.
@@ -49,7 +49,7 @@ export default class
      {
          entity;
          return true;
-     }
+     },
 
     /**
      * Updates a specific entity by ID
@@ -60,15 +60,15 @@ export default class
     {
         entity;
         return true;
-    }
+    },
 
     /**
      * Deletes an entity by ID.
      *
      * @return true, false
-     */
-     async delete(entityId)
-     {
+    */
+    async delete(entityId)
+    {
         const robots = this.getAll();
 
         for(const robot of robots) {
@@ -77,11 +77,28 @@ export default class
         }
 
         return false;
-     }
+    },
 
-     async stop(id)
-     {
-        console.log(id);
-        return true;
-     }
+    async stop(id)
+    {
+    console.log(id);
+    return true;
+    },
+
+    async sendToTable(robotId, tableNumber)
+    {
+        console.log("Sending robot " + robotId + " to table " + tableNumber);
+    },
+
+    async getRobotFromOrder(orderId)
+    {
+        console.log("getting robot from order: " + orderId);
+        return {
+            id: 1,
+            name: 'Robot 1',
+            status: 0,
+            battery: 68
+        }
+    }
+
 }
