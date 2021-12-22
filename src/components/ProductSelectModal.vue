@@ -15,8 +15,10 @@
 <script>
 import ProductService from '@/services/ProductService.js';
 import ProductWithCounter from '@/components/ProductWithCounter';
+import AuthService from '@/services/AuthService.js';
 
-const productService = new ProductService();
+const authService = new AuthService(null);
+const productService = new ProductService(authService.getLocalJWT());
 
 export default {
     name: "ProductSelectModal",
