@@ -23,7 +23,7 @@
                                             <th scope="row" class="textTable">{{ robot.name }}</th>
                                             <th scope="row" class="textTable">{{ getRobotStatus(robot.status) }}</th>
                                             <th scope="row" class="textTable">
-                                                <img class="icon mt-1" @click="emergencyStop(robot.id)" src="/assets/img/stop.png">
+                                                <img class="icon mt-1" @click="emergencyStop(robot.id)" src="/assets/img/stop.svg">
                                             </th>
                                             <th scope="row" class="textTable">{{ robot.battery }}%</th>
                                         </tr>

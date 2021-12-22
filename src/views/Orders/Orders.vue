@@ -39,7 +39,8 @@
                                                 <router-link class="textID" :to="'/orders/update/' + order.id">
                                                     <img class="icon mt-1" src="/assets/img/edit.svg">
                                                 </router-link>
-                                                <img @click="sendToTable(order.id, order.table.tableNumber)"  class="icon mt-1" src="/assets/img/serve.png">
+                                                &nbsp;
+                                                <img @click="sendToTable(order.id, order.table.tableNumber)"  class="icon mt-1" src="/assets/img/serve.svg">
                                             </td>
                                             <td v-if="checkIfOrderContainsAlcohol(order)" class="textTable trueAlcohol">Contains alcohol</td>
                                             <td v-else class="textTable falseAlcohol">Doesn't contain alcohol</td>

@@ -33,17 +33,17 @@ export default {
                 {
                     path: '/map',
                     name: 'Map',
-                    icon: '/assets/img/pin.png'
+                    icon: '/assets/img/pin.svg'
                 },
                 {
                     path: '/employeeSelection',
                     name: 'Login',
-                    icon: '/assets/img/user.png'
+                    icon: '/assets/img/user.svg'
                 },
                 {
                     path: '/notifications',
                     name: 'Notifications',
-                    icon: '/assets/img/help.png'
+                    icon: '/assets/img/help.svg'
                 },
             ]
         }

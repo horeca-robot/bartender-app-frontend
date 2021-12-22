@@ -13,11 +13,11 @@
             </div>
             <div class="col-2 vertical-center">
                 <div class="btn-group" role="group" aria-label="Basic example" :id="product.id">
-                    <button type="button" @click="minusProductCounter()" min="0" class="btn btn-primary"><img class="btnIcon" src="/assets/img/minus.png"></button>
+                    <button type="button" @click="minusProductCounter()" min="0" class="btn btn-primary"><img class="btnIcon" src="/assets/img/minus.svg"></button>
                     <div class="bg-primary px-2">
                         <p class="mt-3 counterText" :id="'productCounter'+ product.id">{{ product.count }}</p>
                     </div>
-                    <button type="button" @click="plusProductCounter()" class="btn btn-primary"><img class="btnIcon" src="/assets/img/plus.png"></button>
+                    <button type="button" @click="plusProductCounter()" class="btn btn-primary"><img class="btnIcon" src="/assets/img/plus.svg"></button>
                 </div>
             </div>
         </div>
