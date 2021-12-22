@@ -19,9 +19,11 @@
 
 <script>
 import ProductService from '@/services/ProductService.js';
+import AuthService from '@/services/AuthService.js';
 import Product from '@/components/Product';
 
-const productService = new ProductService();
+const authService = new AuthService(null);
+const productService = new ProductService(authService.getLocalJWT());
 
 export default {
     name: "ProductOverview",

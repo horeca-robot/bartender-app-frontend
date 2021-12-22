@@ -1,6 +1,5 @@
 import BaseService from "./BaseService";
 import Request from "./Request";
-import AxiosClient from "./Client/AxiosClient";
 
 const getClaimsFromTokenParts = (tokenParts) => {
     if(!Array.isArray(tokenParts))
@@ -34,9 +33,9 @@ const getUIDFromToken = (token) => {
 
 export default class extends BaseService
 {
-    constructor()
+    constructor(jwt)
     {
-        super('employee');
+        super('employee', jwt);
     }
 
     getLocalJWT()
@@ -62,7 +61,7 @@ export default class extends BaseService
     */
     async LogIn(id, employee)
     {
-        const [response, error] = await Request(AxiosClient.post(`/${this._entityType}/${id}/login`, employee));
+        const [response, error] = await Request(this._requestClient.post(`/${this._entityType}/${id}/login`, employee));
 
         if(error !== null || (response !== null && response.status !== 200)) {
             return null;
@@ -78,7 +77,7 @@ export default class extends BaseService
         if(uid === null)
             throw new Error("Claim missing on JWT: 'uid'.");
 
-        const [response, error] = await Request(AxiosClient.post(`/${this._entityType}/${uid}/validate`, {token}));
+        const [response, error] = await Request(this._requestClient.post(`/${this._entityType}/${uid}/validate`, {token}));
 
         if(error !== null)
             return false;
@@ -96,7 +95,7 @@ export default class extends BaseService
         if(uid === null)
             throw new Error("Claim missing on JWT: 'uid'.");
 
-        const [response, error] = await Request(AxiosClient.post(`/${this._entityType}/${uid}/refresh`, {token}));
+        const [response, error] = await Request(this._requestClient.post(`/${this._entityType}/${uid}/refresh`, {token}));
 
         if(error !== null)
             return null;
