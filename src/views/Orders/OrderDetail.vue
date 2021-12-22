@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-auto col-md-12 col-sm-12 my-3">
                     <h1 class="display-3 mt-3">Order details</h1>
-                    <div class="card">
+                    <div class="card primary-color secondary-color">
                         <div class="card-body">
                             <div class="card-text">
                                 <b>Order ID:</b> #{{ order.id }} <br>

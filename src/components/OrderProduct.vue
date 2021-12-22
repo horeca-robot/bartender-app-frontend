@@ -1,5 +1,5 @@
 <template>
-    <div class="product card p-2 bg-light border my-2">
+    <div class="product card p-2 border my-2 primary-color secondary-color">
         <div class="row g-0">
             <div class="col-md-3">
                 <img :src="orderProduct.product.image" class="img-fluid rounded-start">
@@ -10,7 +10,7 @@
                     <p class="card-text">{{ orderProduct.product.description }}</p>
 
                     <b>Status:</b>
-                    <select @change="FireUpdateEvent()" v-model="orderProduct.orderStatus" class="form-select mb-3 w-25 mt-1" aria-label="Default select example">
+                    <select @change="FireUpdateEvent()" v-model="orderProduct.orderStatus" class="form-select mb-3 w-25 mt-1 primary-color secondary-color" aria-label="Default select example">
                         <option disabled selected readyonly>Choose product status</option>
                         <option v-for="(orderStatus, index) in orderProductStatusses" :key="index" :value="orderStatus">{{ orderStatus }}</option>
                     </select>

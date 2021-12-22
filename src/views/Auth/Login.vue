@@ -9,7 +9,7 @@
                         <div class="my-3">
                             <div v-if="enteredPinCodeIsCorrect.length > 0" class="alert alert-danger">{{ enteredPinCodeIsCorrect }}</div>
                             <label for="pincode" class="form-label">Pincode</label>
-                            <input type="password" v-model="employee.pincode" class="form-control" placeholder="Your pin...">
+                            <input type="password" v-model="employee.pincode" class="form-control primary-color secondary-color" placeholder="Your pin...">
                             <button type="submit" v-on:click="loginEmployee(employee.id, employee)" class="btn btn-primary mt-2">Log in</button>
                         </div>
                     </div>

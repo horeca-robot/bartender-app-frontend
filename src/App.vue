@@ -19,11 +19,11 @@ export default {
 
 <style>
 .primary-color {
-  color: limegreen !important;
+  color: black !important;
 }
 
 .secondary-color {
-  background-color: hotpink !important;
+  background-color: purple !important;
 }
 
 html, body{
@@ -69,6 +69,11 @@ a {
     min-width: 2em;
     max-width: 2em;
     cursor: pointer;
+}
+
+.fontIcon {
+  font-size: 1.5rem;
+  text-align:center;
 }
 
 .iconRobot {

@@ -1,5 +1,5 @@
 <template>
-    <div class="product card p-2 bg-light border my-2">
+    <div class="product card p-2 border my-2 primary-color secondary-color">
         <div class="row g-0">
             <div class="col-3">
                 <img :src="product.image" class="img-fluid rounded-start">
@@ -13,11 +13,11 @@
             </div>
             <div class="col-2 vertical-center">
                 <div class="btn-group" role="group" aria-label="Basic example" :id="product.id">
-                    <button type="button" @click="minusProductCounter()" min="0" class="btn btn-primary"><img class="btnIcon" src="/assets/img/minus.svg"></button>
+                    <button type="button" @click="minusProductCounter()" min="0" class="btn btn-primary"><i class="fas fa-minus"></i></button>
                     <div class="bg-primary px-2">
                         <p class="mt-3 counterText" :id="'productCounter'+ product.id">{{ product.count }}</p>
                     </div>
-                    <button type="button" @click="plusProductCounter()" class="btn btn-primary"><img class="btnIcon" src="/assets/img/plus.svg"></button>
+                    <button type="button" @click="plusProductCounter()" class="btn btn-primary"><i class="fas fa-plus fontIcon"></i></button>
                 </div>
             </div>
         </div>

@@ -16,6 +16,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col" class="textTable">Table Number</th>
+                                            <th scope="col" class="textTable">Order done?</th>
                                             <th scope="col" class="textTable">Paid?</th>
                                             <th scope="col" class="textTable">Action</th>
                                             <th scope="col" class="textTable">18+</th>
@@ -27,6 +28,8 @@
                                             <th scope="row" class="textTable">
                                                 <router-link class="textID primary-color" :to="'/orders/' + order.id">{{ order.table != null ? order.table.tableNumber : 'N/A' }}</router-link>
                                             </th>
+                                            <td v-if="order.orderDone" class="primary-color textTable falseAlcohol" style="text-transform:capitalize;">Yes</td>
+                                            <td v-else class="primary-color textTable trueAlcohol" style="text-transform:capitalize;">No</td>
                                             <td>
                                                 <select @change="updatePaymentStatus" class="form-select textTable primary-color secondary-color" v-model="order.paid" :data-id="order.id">
                                                     <option :key="'idYes' + index" :value="true">Yes</option>
@@ -34,13 +37,13 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <img class="icon mt-1" src="/assets/img/delete.svg">
+                                                <i class="far fa-trash-alt fontIcon primary-color"></i>
                                                 &nbsp;
                                                 <router-link class="textID primary-color" :to="'/orders/update/' + order.id">
-                                                    <img class="icon mt-1" src="/assets/img/edit.svg">
+                                                    <i class="far fa-edit fontIcon primary-color"></i>
                                                 </router-link>
                                                 &nbsp;
-                                                <img @click="sendToTable(order.id, order.table.tableNumber)"  class="icon mt-1" src="/assets/img/serve.svg">
+                                                <i @click="sendToTable(order.id, order.table.tableNumber)" class="fas fa-concierge-bell fontIcon primary-color"></i>
                                             </td>
                                             <td v-if="checkIfOrderContainsAlcohol(order)" class="textTable trueAlcohol">Contains alcohol</td>
                                             <td v-else class="textTable falseAlcohol">Doesn't contain alcohol</td>
