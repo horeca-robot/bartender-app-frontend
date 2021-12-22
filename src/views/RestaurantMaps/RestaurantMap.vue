@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row h-100 justify-content-center">
                 <div class="col-auto col-md-12 col-sm-12 my-3">
-                    <h1 class="card-title text-center">Restaurant map</h1>
+                    <h1 class="card-title text-center text-color">Restaurant map</h1>
                 </div>
             </div>
         </div>

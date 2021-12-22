@@ -4,7 +4,7 @@
         <b-button v-b-modal="'add-product-modal'">Add products</b-button>
 
         <!-- The modal -->
-        <b-modal id="add-product-modal" size="xl" title="Add products">
+        <b-modal id="add-product-modal" size="xl" title="Add products" content-class="primary-color text-color">
             <div class="row p-2" v-for="(product) in this.$data.products" :key="product.id" :id="product.id" >
                 <ProductWithCounter :product="product"/>
             </div>
@@ -54,5 +54,4 @@ export default {
 </script>
 
 <style>
-
 </style>
