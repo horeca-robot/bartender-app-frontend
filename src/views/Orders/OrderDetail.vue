@@ -32,9 +32,11 @@
 import OrderProduct from '@/components/OrderProduct';
 import OrderService from '@/services/OrderService.js';
 import TableService from '@/services/TableService.js';
+import AuthService from '@/services/AuthService.js';
 
-const orderService = new OrderService();
-const tableService = new TableService();
+const authService = new AuthService(null);
+const orderService = new OrderService(authService.getLocalJWT());
+const tableService = new TableService(authService.getLocalJWT());
 
 export default {
     name: 'OrderDetail',

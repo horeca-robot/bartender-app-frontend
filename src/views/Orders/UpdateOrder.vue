@@ -23,10 +23,12 @@
 <script>
 import TableService from '@/services/TableService.js';
 import OrderService from '@/services/OrderService.js';
+import AuthService from '@/services/AuthService.js';
 import ProductSelectModal from '@/components/ProductSelectModal';
 
-const tableService = new TableService();
-const orderService = new OrderService();
+const authService = new AuthService(null);
+const tableService = new TableService(authService.getLocalJWT());
+const orderService = new OrderService(authService.getLocalJWT());
 
 export default {
     name: 'CreateOrder',

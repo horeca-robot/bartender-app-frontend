@@ -1,13 +1,15 @@
 import Request from "./Request";
-import AxiosClient from "./Client/AxiosClient";
+import getAxiosConfig from "./Client/AxiosClient";
 
 export default class
 {
     _entityType = '';
+    _requestClient = null;
 
-    constructor(entityType)
+    constructor(entityType, jwt)
     {
         this._entityType = entityType;
+        this._requestClient = getAxiosConfig(jwt);
     }
 
     /**
@@ -17,7 +19,7 @@ export default class
      */
     async getAll(page = 0, size = 2)
     {
-        const [response, error] = await Request(AxiosClient.get(`/${this._entityType}?page=${page}&size=${size}`));
+        const [response, error] = await Request(this._requestClient.get(`/${this._entityType}?page=${page}&size=${size}`));
 
         if(error !== null) {
             return [];
@@ -33,7 +35,7 @@ export default class
      */
     async getByID(id)
     {
-        const [response, error] = await Request(AxiosClient.get(`/${this._entityType}/${id}`));
+        const [response, error] = await Request(this._requestClient.get(`/${this._entityType}/${id}`));
 
         if(error !== null) {
             return null;
@@ -49,7 +51,7 @@ export default class
      */
      async create(entity)
      {
-         const [,error] = await Request(AxiosClient.post(`/${this._entityType}`, entity));
+         const [,error] = await Request(this._requestClient.post(`/${this._entityType}`, entity));
 
          if(error !== null) {
              return false;
@@ -69,7 +71,7 @@ export default class
             throw new Error("Given entity must have an 'id' field");
         }
 
-        const [,error] = await Request(AxiosClient.put(`/${this._entityType}/${entity.id}`, entity));
+        const [,error] = await Request(this._requestClient.put(`/${this._entityType}/${entity.id}`, entity));
 
         if(error !== null) {
             return false;
@@ -85,7 +87,7 @@ export default class
      */
      async delete(entityId)
      {
-        const [,error] = await Request(AxiosClient.delete(`/${this._entityType}/${entityId}`));
+        const [,error] = await Request(this._requestClient.delete(`/${this._entityType}/${entityId}`));
 
         if(error !== null) {
             return false;

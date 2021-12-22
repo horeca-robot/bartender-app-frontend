@@ -69,20 +69,36 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
     const token = authService.getLocalJWT();
     const authRoutes = ['Login', 'EmployeeSelection'];
 
-    if(authRoutes.includes(to.name)) {
-        if(token !== null && authService.verifyJWT(token)) {
-            next('/orders');
-        } else {
-            next();
-        }
+    if(token == null && authRoutes.includes(to.name)) {
+        next();
+        return;
     }
 
-    if(token === null && !authRoutes.includes(to.name)) {
+    if(token == null && !authRoutes.includes(to.name)) {
+        window.localStorage.removeItem('authToken');
+
         next('/employeeSelection');
+        return;
+    }
+
+    if(token != null) {
+        const tokenIsValid = await authService.verifyJWT(token);
+
+        if(!tokenIsValid) {
+            window.localStorage.removeItem('authToken');
+
+            next('/employeeSelection');
+            return;
+        }
+
+        if(authRoutes.includes(to.name)) {
+            next('/orders');
+            return;
+        }
     }
 
     next();

@@ -65,8 +65,10 @@
 <script>
 import OrderService from '@/services/OrderService.js';
 import RobotService from '@/services/RobotService.js';
+import AuthService from '@/services/AuthService.js';
 
-const orderService = new OrderService();
+const authService = new AuthService(null);
+const orderService = new OrderService(authService.getLocalJWT());
 
 export default {
     name: 'Orders',
