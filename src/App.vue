@@ -1,5 +1,5 @@
 <template>
-  <div class="layout--customer-app">
+  <div class="layout--customer-app primary-color secondary-color">
     <NavBar />
     <router-view />
   </div>
@@ -18,6 +18,14 @@ export default {
 </script>
 
 <style>
+.primary-color {
+  color: limegreen !important;
+}
+
+.secondary-color {
+  background-color: hotpink !important;
+}
+
 html, body{
   width: 100vw;
   min-height: 100vh;
@@ -27,7 +35,6 @@ html, body{
   flex-direction: column;
   overflow: hidden;
   overflow-y: auto;
-  background-color: #eaeaea !important;
 }
 
 #main-content{
