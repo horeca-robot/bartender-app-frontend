@@ -23,7 +23,7 @@ export default {
 }
 
 .secondary-color {
-  background-color: purple !important;
+  background-color: white !important;
 }
 
 html, body{
