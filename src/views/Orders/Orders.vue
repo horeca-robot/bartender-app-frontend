@@ -158,11 +158,11 @@ export default {
     }
 
     .trueAlcohol {
-        color: rgb(235, 69, 69);
+        color: rgb(235, 69, 69) !important;
     }
 
     .falseAlcohol {
-        color: rgb(74, 235, 74);
+        color: rgb(74, 235, 74) !important;
     }
 
     .floatRight {
