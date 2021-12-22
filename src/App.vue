@@ -8,22 +8,44 @@
 <script>
 // @ is an alias to /src
 import NavBar from '@/components/NavBar.vue'
+import RestaurantInfoService from '@/services/RestaurantInfoService.js';
+
+const restaurantInfoService = new RestaurantInfoService();
 
 export default {
   name: 'Home',
   components: {
-    NavBar,
+    NavBar
+  },
+  data() {
+    return {
+      RestaurantInfo: {}
+    }
+  },
+  methods: {
+    async getColors() {
+        this.$data.RestaurantInfo = await restaurantInfoService.getAll();
+    },
+    async setColors(){
+      await this.getColors();
+      document.documentElement.style.setProperty('--primary-color', this.$data.RestaurantInfo.primaryColor);
+      document.documentElement.style.setProperty('--secondary-color', this.$data.RestaurantInfo.secondaryColor);
+    }
+  },
+  mounted() {
+    this.setColors()
   }
 }
 </script>
 
 <style>
 .primary-color {
-  color: black !important;
+  color: var(--primary-color) !important;
 }
 
 .secondary-color {
-  background-color: white !important;
+  background-color: var(--secondary-color) !important;
+  box-shadow: 0 0 0.5rem 0.2rem var(--primary-color) !important;
 }
 
 html, body{
@@ -62,7 +84,6 @@ a {
 
 .card {
   border-radius: 10px !important;
-  box-shadow: 0 0 0.5rem 0.2rem #bbb !important;
 }
 
 .icon {

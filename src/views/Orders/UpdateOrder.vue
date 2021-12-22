@@ -64,10 +64,10 @@ export default {
                 if(product.count == 0)
                     continue;
 
-                // Either select an existing order product, or create a new one 
+                // Either select an existing order product, or create a new one
                 while(product.count > 0) {
                     let foundExistingOrderProduct = false;
-                    
+
                     // First find an existing product order
                     for(let i = existingOrderProducts.length - 1; i >= 0; i -= 1) {
                         if(existingOrderProducts[i].product.id == product.id) {
