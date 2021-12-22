@@ -3,17 +3,17 @@
         <div class="container">
             <div class="row h-100">
                 <div class="col col-md-12 my-3">
-                    <h1 class="display-1 center">Employee selection</h1>
+                    <h1 class="display-1 center text-color">Employee selection</h1>
                     <hr>
 
                     <div class="w-50 mx-auto mb-3">
-                        <label for="search" class="form-label">Search</label>
-                        <input type="text" class="form-control primary-color secondary-color" placeholder="Search...">
+                        <label for="search" class="form-label text-color">Search</label>
+                        <input type="text" class="form-control primary-color text-color" placeholder="Search...">
                         <hr>
                     </div>
 
                     <div v-for="(employee, index) in employees.employees" v-bind:key="index" class="center">
-                        <router-link class="form-control w-50 mb-3 with-arrow with-arrow--right primary-color secondary-color" :to="'/login/' + employee.id">{{ employee.username }}</router-link> <br>
+                        <router-link class="form-control w-50 mb-3 with-arrow with-arrow--right primary-color text-color" :to="'/login/' + employee.id">{{ employee.username }}</router-link> <br>
                     </div>
                 </div>
             </div>

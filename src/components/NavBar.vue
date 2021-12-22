@@ -1,5 +1,5 @@
 <template>
-    <div class="sidebar primary-color secondary-color">
+    <div class="sidebar primary-color text-color">
         <router-link :to="navLink.path" v-for="(navLink, index) in navLinks" :key="index">
             <div class="sidebarItem">
                 <i :class="navLink.icon"></i> {{ navLink.name }}

@@ -3,13 +3,13 @@
         <div class="container">
             <div class="row h-100">
                 <div class="col col-md-12 my-3">
-                    <h1 class="display-1 center">Employee login</h1>
+                    <h1 class="display-1 center text-color">Employee login</h1>
                     <hr>
                     <div class="w-50 mx-auto">
                         <div class="my-3">
                             <div v-if="enteredPinCodeIsCorrect.length > 0" class="alert alert-danger">{{ enteredPinCodeIsCorrect }}</div>
-                            <label for="pincode" class="form-label">Pincode</label>
-                            <input type="password" v-model="employee.pincode" class="form-control primary-color secondary-color" placeholder="Your pin...">
+                            <label for="pincode" class="form-label text-color">Pincode</label>
+                            <input type="password" v-model="employee.pincode" class="form-control primary-color text-color" placeholder="Your pin...">
                             <button type="submit" v-on:click="loginEmployee(employee.id, employee)" class="btn btn-primary mt-2">Log in</button>
                         </div>
                     </div>

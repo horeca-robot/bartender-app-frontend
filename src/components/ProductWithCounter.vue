@@ -1,5 +1,5 @@
 <template>
-    <div class="product card p-2 border my-2 primary-color secondary-color">
+    <div class="product card p-2 border my-2 primary-color">
         <div class="row g-0">
             <div class="col-3">
                 <img :src="product.image" class="img-fluid rounded-start">
