@@ -1,10 +1,10 @@
 <template>
     <main>
-        <div class="container">
+        <div class="container text-color">
             <div class="row">
                 <div class="col-auto col-md-12 col-sm-12 my-3">
                     <h1 class="display-3 mt-3">Order details</h1>
-                    <div class="card">
+                    <div class="primary-color card">
                         <div class="card-body">
                             <div class="card-text">
                                 <b>Order ID:</b> #{{ order.id }} <br>
@@ -32,9 +32,11 @@
 import OrderProduct from '@/components/OrderProduct';
 import OrderService from '@/services/OrderService.js';
 import TableService from '@/services/TableService.js';
+import AuthService from '@/services/AuthService.js';
 
-const orderService = new OrderService();
-const tableService = new TableService();
+const authService = new AuthService(null);
+const orderService = new OrderService(authService.getLocalJWT());
+const tableService = new TableService(authService.getLocalJWT());
 
 export default {
     name: 'OrderDetail',

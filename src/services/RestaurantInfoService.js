@@ -2,8 +2,8 @@ import BaseService from "./BaseService";
 
 export default class extends BaseService
 {
-    constructor(jwt)
+    constructor()
     {
-        super('product', jwt);
+        super('restaurantInfo');
     }
 }

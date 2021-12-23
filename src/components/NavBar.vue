@@ -1,9 +1,8 @@
 <template>
-    <div class="sidebar">
+    <div class="sidebar primary-color text-color">
         <router-link :to="navLink.path" v-for="(navLink, index) in navLinks" :key="index">
             <div class="sidebarItem">
-                <img class="icon" :src="navLink.icon"/> &nbsp;
-                {{ navLink.name }}
+                <i :class="navLink.icon"></i> {{ navLink.name }}
             </div>
         </router-link>
     </div>
@@ -18,32 +17,32 @@ export default {
                 {
                     path: '/orders',
                     name: 'Orders',
-                    icon: '/assets/img/order.svg'
+                    icon: 'fas fa-receipt fontIcon icon'
                 },
                 {
                     path: '/products',
                     name: 'Products',
-                    icon: '/assets/img/about.svg'
+                    icon: 'fas fa-info-circle fontIcon icon'
                 },
                 {
                     path: '/robots',
                     name: 'Robots',
-                    icon: '/assets/img/robot2.svg'
+                    icon: 'fas fa-robot fontIcon icon'
                 },
                 {
                     path: '/map',
                     name: 'Map',
-                    icon: '/assets/img/pin.png'
-                },
-                {
-                    path: '/employeeSelection',
-                    name: 'Login',
-                    icon: '/assets/img/user.png'
+                    icon: 'fas fa-map-marker-alt fontIcon icon'
                 },
                 {
                     path: '/notifications',
                     name: 'Notifications',
-                    icon: '/assets/img/help.png'
+                    icon: 'fas fa-bell fontIcon icon'
+                },
+                {
+                    path: '/employeeSelection',
+                    name: 'Login',
+                    icon: 'fas fa-user fontIcon icon'
                 },
             ]
         }

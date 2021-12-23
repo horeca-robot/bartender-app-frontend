@@ -7,7 +7,7 @@
                     <hr>
                     <label class="form-label">Table number</label>
                     <div class="form-group">
-                        <select v-model="order.table" class="form-select mb-3 w-25" aria-label="Default select example">
+                        <select v-model="order.table" class="form-select mb-3 w-25 primary-color secondary-color" aria-label="Default select example">
                             <option disabled selected readyonly>Choose table</option>
                             <option v-for="(restaurantTables, index) in restaurantTables" :key="index" :value="restaurantTables">{{ restaurantTables.tableNumber }}</option>
                         </select>
@@ -23,10 +23,12 @@
 <script>
 import TableService from '@/services/TableService.js';
 import OrderService from '@/services/OrderService.js';
+import AuthService from '@/services/AuthService.js';
 import ProductSelectModal from '@/components/ProductSelectModal';
 
-const tableService = new TableService();
-const orderService = new OrderService();
+const authService = new AuthService(null);
+const tableService = new TableService(authService.getLocalJWT());
+const orderService = new OrderService(authService.getLocalJWT());
 
 export default {
     name: 'CreateOrder',
