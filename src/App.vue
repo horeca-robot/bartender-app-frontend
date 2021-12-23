@@ -103,6 +103,7 @@ export default {
 
 .primary-color {
   background-color: var(--primary-color) !important;
+  box-shadow: 0 0 0.5rem 0.2rem var(--primary-color) !important;
 }
 
 .secondary-color {
