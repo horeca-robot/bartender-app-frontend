@@ -8,7 +8,7 @@
                         <hr>
                         <label class="form-label">Table number</label>
                         <div class="form-group">
-                            <select v-model="order.table" class="form-select mb-3 w-25 primary-color" aria-label="Default select example">
+                            <select v-model="order.table" class="form-select mb-3 w-25 primary-color text-color" aria-label="Default select example">
                                 <option disabled selected readyonly>Choose table</option>
                                 <option v-for="(restaurantTables, index) in restaurantTables" :key="index" :value="restaurantTables">{{ restaurantTables.tableNumber }}</option>
                             </select>
