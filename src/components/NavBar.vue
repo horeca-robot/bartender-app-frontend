@@ -5,6 +5,10 @@
                 <i :class="navLink.icon"></i> {{ navLink.name }}
             </div>
         </router-link>
+        <hr>
+        <div class="sidebarItem" v-on:click="logoutEmployee()">
+            <i class="fas fa-sign-out-alt fontIcon icon"></i> Logout
+        </div>
     </div>
 </template>
 
@@ -46,7 +50,13 @@ export default {
                 },
             ]
         }
-    }
+    },
+    methods: {
+      logoutEmployee() {
+        window.localStorage.removeItem('authToken');
+        location.reload();
+      },
+    },
 }
 </script>
 
