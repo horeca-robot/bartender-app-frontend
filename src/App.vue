@@ -1,6 +1,6 @@
 <template>
   <div class="layout--customer-app secondary-color">
-    <NavBar />
+    <NavBar ref="navbar"/>
     <router-view />
   </div>
 </template>
@@ -92,6 +92,9 @@ export default {
   },
   mounted() {
     this.setColors()
+  },
+  updated() {
+    this.$refs.navbar.loggedInOrNot();
   }
 }
 </script>
