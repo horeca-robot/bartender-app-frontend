@@ -12,7 +12,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">Help needed: {{ notification.reason }}</h5>
                                         <p class="card-text">Description: {{ notification.description }}</p>
-                                        <p class="card-text">Table number: {{ notification.tableNumber }}</p>
+                                        <!-- <p class="card-text">Table number: {{ notification.tableNumber }}</p> -->
                                     </div>
                                 </div>
                             </div>
@@ -26,11 +26,11 @@
 
 <script>
 import NotificationService from '@/services/NotificationService.js';
-import TableService from '@/services/TableService.js';
-import AuthService from '@/services/AuthService.js';
+// import TableService from '@/services/TableService.js';
+// import AuthService from '@/services/AuthService.js';
 
-const authService = new AuthService(null);
-const tableService = new TableService(authService.getLocalJWT());
+// const authService = new AuthService(null);
+// const tableService = new TableService(authService.getLocalJWT());
 
 export default {
     name: 'NotificationsOverview',
@@ -54,18 +54,19 @@ export default {
 
             const notifications = await NotificationService.getAll();
 
-            this.$data.notifications = [];
+            // this.$data.notifications = [];
+            this.$data.notifications = notifications;
 
-            for(let notification of notifications) {
-                console.log(notification);
-                console.log(table);
-                const table = await tableService.getByID(notification.tableId);
+            // for(let notification of notifications) {
+            //     console.log(notification);
+            //     console.log(table);
+            //     const table = await tableService.getByID(notification.tableId);
 
-                if(table !== null) {
-                    notification.tableNumber = table.tableNumber;
-                    this.$data.notifications.push(notification);
-                }
-            }
+            //     if(table !== null) {
+            //         notification.tableNumber = table.tableNumber;
+            //         this.$data.notifications.push(notification);
+            //     }
+            // }
         },
     },
     mounted: function() {
