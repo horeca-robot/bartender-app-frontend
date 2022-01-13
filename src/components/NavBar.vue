@@ -5,8 +5,11 @@
                 <i :class="navLink.icon"></i> {{ navLink.name }}
             </div>
         </router-link>
+        <router-link v-if="!loggedIn" to="/employeeSelection">
+            <div class="sidebarItem"><i class="fas fa-user fontIcon icon"></i> Login</div>
+        </router-link>
         <hr>
-        <div class="sidebarItem" v-on:click="logoutEmployee()">
+        <div class="sidebarItem" v-if="loggedIn" v-on:click="logoutEmployee()">
             <i class="fas fa-sign-out-alt fontIcon icon"></i> Logout
         </div>
     </div>
@@ -17,6 +20,7 @@ export default {
     name:  'NavBar',
     data() {
         return {
+            loggedIn: false,
             navLinks: [
                 {
                     path: '/orders',
@@ -43,11 +47,6 @@ export default {
                     name: 'Notifications',
                     icon: 'fas fa-bell fontIcon icon'
                 },
-                {
-                    path: '/employeeSelection',
-                    name: 'Login',
-                    icon: 'fas fa-user fontIcon icon'
-                },
             ]
         }
     },
@@ -56,7 +55,12 @@ export default {
         window.localStorage.removeItem('authToken');
         location.reload();
       },
-    },
+        loggedInOrNot() {
+            if (window.localStorage.getItem('authToken') != null) {
+                this.loggedIn = true;
+            }
+        },
+    }
 }
 </script>
 
