@@ -6,7 +6,7 @@
             </div>
             <div class="col-7">
                 <div class="card-body">
-                    <h5 class="card-title">{{ product.name }} - &euro;{{ product.price }}</h5>
+                    <h5 class="card-title">{{ product.name }} - &euro;{{ product.price.toFixed(2) }}</h5>
                     <p class="card-text">{{ product.description }}</p>
                     <p class="card-text"><small class="text-muted">{{ product.remarks }}</small></p>
                 </div>
